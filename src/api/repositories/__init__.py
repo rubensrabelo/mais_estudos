@@ -1,5 +1,5 @@
-from .movie_repository import movie_data
+from .movie_repository import get_dataset
 
 __all__ = [
-    "movie_data"
+    "get_dataset"
 ]
