@@ -5,11 +5,6 @@ from api.services import movies_info_service
 router = APIRouter()
 
 
-@router.get("/")
-def root():
-    return {"msg": "Movies EDA API - Indicium Challenge"}
-
-
 @router.get("/summary")
 def get_summary():
     stats = movies_info_service.get_summary()
