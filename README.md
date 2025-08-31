@@ -16,16 +16,20 @@ src/
 │   │   ├── movie_repository.py
 │   │   └── preprocessing/
 │   │       ├── __init__.py
-│   │       ├── clean_dataset.py
+│   │       ├── load_and_clean_dataset.py
 │   │       └── feature_engineering.py
 │   ├── routes/
 │   │   ├── __init__.py
-│   │   ├── movies_analysis_plot_router.py
+│   │   ├── movies_hypotheses_router.py
 │   │   └── movies_info_router.py
+│   │   └── movies_plot_router.py
+│   │   └── movies_recommendation_router.py
 │   ├── services/
 │   │   ├── __init__.py
-│   │   ├── movies_analysis_service.py
-│   │   └── movies_info_service.py
+│   │   ├── movies_hypotheses_service.py
+│   │   ├── movies_info_service.py
+│   │   └── movies_plot_service.py
+│   │   └── movies_recommendation_service.py
 │   ├── utils/
 │   │   ├── __init__.py
 │   │   ├── correlations.py
