@@ -1,0 +1,72 @@
+import pandas as pd
+
+from api.repositories import df
+
+
+def recommend_movie():
+    """Retorna o melhor filme pelo ranking global."""
+    df_ranked = df.copy()
+    df_ranked["Rank_IMDB"] = df_ranked["IMDB_Rating"].rank(ascending=False)
+    df_ranked["Rank_Votes"] = df_ranked["No_of_Votes"].rank(ascending=False)
+    df_ranked["Rank_Gross"] = df_ranked["Gross"].rank(ascending=False)
+    df_ranked["Rank_Meta"] = df_ranked["Meta_score"].rank(ascending=False)
+    df_ranked["Global_Score"] = (
+        df_ranked["Rank_IMDB"]
+        + df_ranked["Rank_Votes"]
+        + df_ranked["Rank_Gross"]
+        + df_ranked["Rank_Meta"]
+    )
+
+    best_movie = df_ranked.sort_values("Global_Score").iloc[0]
+    return {
+        "title": best_movie["Series_Title"],
+        "year": int(best_movie["Released_Year"]),
+        "imdb": best_movie["IMDB_Rating"],
+        "meta_score": (
+            float(best_movie["Meta_score"])
+            if not pd.isna(best_movie["Meta_score"]) else None
+        ),
+        "votes": int(best_movie["No_of_Votes"]),
+        "gross": float(best_movie["Gross"]),
+    }
+
+
+def top10_movies():
+    """
+    Retorna os top 10 filmes pelo ranking global, ordenados por IMDB Rating.
+    """
+    df_ranked = df.copy()
+    df_ranked["Rank_IMDB"] = df_ranked["IMDB_Rating"].rank(ascending=False)
+    df_ranked["Rank_Votes"] = df_ranked["No_of_Votes"].rank(ascending=False)
+    df_ranked["Rank_Gross"] = df_ranked["Gross"].rank(ascending=False)
+    df_ranked["Rank_Meta"] = df_ranked["Meta_score"].rank(ascending=False)
+    df_ranked["Global_Score"] = (
+        df_ranked["Rank_IMDB"]
+        + df_ranked["Rank_Votes"]
+        + df_ranked["Rank_Gross"]
+        + df_ranked["Rank_Meta"]
+    )
+
+    top10 = (
+        df_ranked.sort_values(
+            ["IMDB_Rating", "Global_Score"],
+            ascending=[False, True]
+        )
+        .head(10)
+    )
+
+    return [
+        {
+            "title": row["Series_Title"],
+            "year": int(row["Released_Year"]),
+            "imdb": row["IMDB_Rating"],
+            "meta_score": (
+                float(row["Meta_score"])
+                if not pd.isna(row["Meta_score"]) else None
+            ),
+            "votes": int(row["No_of_Votes"]),
+            "gross": float(row["Gross"]),
+            "global_score": float(row["Global_Score"])
+        }
+        for _, row in top10.iterrows()
+    ]
