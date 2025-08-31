@@ -13,6 +13,6 @@ api_router.include_router(
 
 api_router.include_router(
     analysis_router,
-    prefix="/analysis",
+    prefix="/analysis/plot",
     tags=["Movies Analysis"]
 )

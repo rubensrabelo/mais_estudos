@@ -20,7 +20,7 @@ src/
 │   │       └── feature_engineering.py
 │   ├── routes/
 │   │   ├── __init__.py
-│   │   ├── movies_analysis_router.py
+│   │   ├── movies_analysis_plot_router.py
 │   │   └── movies_info_router.py
 │   ├── services/
 │   │   ├── __init__.py
