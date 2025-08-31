@@ -5,7 +5,7 @@ from api.repositories import df
 from api.utils import correlations
 
 
-def plot_corr_heatmap():
+def plot_corr_heatmap() -> io.BytesIO:
     plt.figure(figsize=(10, 8))
     corr = correlations(df)
     sns.heatmap(
@@ -24,7 +24,7 @@ def plot_corr_heatmap():
     return buf
 
 
-def plot_imbd_vs_gross():
+def plot_imbd_vs_gross() -> io.BytesIO:
     plt.figure(figsize=(8, 6))
     sns.scatterplot(data=df, x="IMDB_Rating", y="Gross", alpha=0.5)
     plt.yscale("log")

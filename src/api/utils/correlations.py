@@ -1,7 +1,7 @@
 import pandas as pd
 
 
-def correlations(df: pd.DataFrame):
+def correlations(df: pd.DataFrame) -> pd.DataFrame:
     num_cols = [
         "Gross",
         "IMDB_Rating",
