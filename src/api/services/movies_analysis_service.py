@@ -1,9 +1,29 @@
-import seaborn as sns
-import matplotlib.pyplot as plt
 import io
+
+from api.config import plt, sns
 from api.repositories import get_dataset
+from api.utils import correlations
 
 df = get_dataset()
+
+
+def plot_corr_heatmap():
+    plt.figure(figsize=(10, 8))
+    corr = correlations(df)
+    sns.heatmap(
+        corr,
+        annot=True,
+        fmt=".2f",
+        cmap="coolwarm",
+        center=0,
+        square=True
+    )
+    plt.title("Heatmap de Correlações", fontsize=14)
+
+    buf = io.BytesIO()
+    plt.savefig(buf, format="png", bbox_inches="tight")
+    buf.seek(0)
+    return buf
 
 
 def plot_imbd_vs_gross():
