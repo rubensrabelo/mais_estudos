@@ -1,7 +1,9 @@
 from .movies_info_router import router as infor_router
-from .movies_analysis_plot_router import router as analysis_router
+from .movies_plot_router import router as plot_router
+from .movies_hypotheses_router import router as hypotheses_router
 
 __all__ = [
     "infor_router",
-    "analysis_router",
+    "plot_router",
+    "hypotheses_router",
 ]
