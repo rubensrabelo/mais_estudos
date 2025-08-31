@@ -1,10 +1,8 @@
 import io
 
 from api.config import plt, sns
-from api.repositories import get_dataset
+from api.repositories import df
 from api.utils import correlations
-
-df = get_dataset()
 
 
 def plot_corr_heatmap():

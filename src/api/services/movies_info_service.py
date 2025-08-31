@@ -1,7 +1,5 @@
-from api.repositories import get_dataset
+from api.repositories import df
 from api.utils import summary_stats, correlations
-
-df = get_dataset()
 
 
 def get_summary():

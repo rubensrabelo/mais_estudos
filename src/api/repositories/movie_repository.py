@@ -15,3 +15,6 @@ def get_dataset() -> pd.DataFrame:
         df = feature_engineering(df)
         _movie_data = df
     return _movie_data.copy()
+
+
+movie_data = get_dataset()
