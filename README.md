@@ -21,17 +21,18 @@ src/
 │   ├── routes/
 │   │   ├── __init__.py
 │   │   ├── movies_hypotheses_router.py
-│   │   └── movies_info_router.py
-│   │   └── movies_plot_router.py
+│   │   ├── movies_info_router.py
+│   │   ├── movies_plot_router.py
 │   │   └── movies_recommendation_router.py
 │   ├── services/
 │   │   ├── __init__.py
 │   │   ├── movies_hypotheses_service.py
 │   │   ├── movies_info_service.py
-│   │   └── movies_plot_service.py
+│   │   ├── movies_plot_service.py
 │   │   └── movies_recommendation_service.py
 │   ├── utils/
 │   │   ├── __init__.py
 │   │   ├── correlations.py
-│   │   └── summary_stats.py
+│   │   ├── summary_stats.py
+│   │   └── add_global_ranking.py
 ```

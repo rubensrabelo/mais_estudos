@@ -1,23 +1,14 @@
 import pandas as pd
 
 from api.repositories import df
+from api.utils import add_global_ranking
 
 
 def recommend_movie():
     """Retorna o melhor filme pelo ranking global."""
-    df_ranked = df.copy()
-    df_ranked["Rank_IMDB"] = df_ranked["IMDB_Rating"].rank(ascending=False)
-    df_ranked["Rank_Votes"] = df_ranked["No_of_Votes"].rank(ascending=False)
-    df_ranked["Rank_Gross"] = df_ranked["Gross"].rank(ascending=False)
-    df_ranked["Rank_Meta"] = df_ranked["Meta_score"].rank(ascending=False)
-    df_ranked["Global_Score"] = (
-        df_ranked["Rank_IMDB"]
-        + df_ranked["Rank_Votes"]
-        + df_ranked["Rank_Gross"]
-        + df_ranked["Rank_Meta"]
-    )
-
+    df_ranked = add_global_ranking(df)
     best_movie = df_ranked.sort_values("Global_Score").iloc[0]
+
     return {
         "title": best_movie["Series_Title"],
         "year": int(best_movie["Released_Year"]),
@@ -35,25 +26,10 @@ def top10_movies():
     """
     Retorna os top 10 filmes pelo ranking global, ordenados por IMDB Rating.
     """
-    df_ranked = df.copy()
-    df_ranked["Rank_IMDB"] = df_ranked["IMDB_Rating"].rank(ascending=False)
-    df_ranked["Rank_Votes"] = df_ranked["No_of_Votes"].rank(ascending=False)
-    df_ranked["Rank_Gross"] = df_ranked["Gross"].rank(ascending=False)
-    df_ranked["Rank_Meta"] = df_ranked["Meta_score"].rank(ascending=False)
-    df_ranked["Global_Score"] = (
-        df_ranked["Rank_IMDB"]
-        + df_ranked["Rank_Votes"]
-        + df_ranked["Rank_Gross"]
-        + df_ranked["Rank_Meta"]
-    )
+    df_ranked = add_global_ranking(df)
 
-    top10 = (
-        df_ranked.sort_values(
-            ["IMDB_Rating", "Global_Score"],
-            ascending=[False, True]
-        )
-        .head(10)
-    )
+    top10 = df_ranked.sort_values("Global_Score").head(10)
+    # top10 = top10.sort_values("IMDB_Rating", ascending=False)
 
     return [
         {
