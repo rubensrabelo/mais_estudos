@@ -6,11 +6,13 @@
 ```bash
 src/
 ├── main.py
+├── config/
+│   ├── __init__.py
+│   └── plot_config.py           # matplotlib + seaborn configurados
+├── data/
 ├── api/
 │   ├── api_router.py                # centraliza os routers
 │   ├── config/                      # novo pacote para configs globais
-│   │   ├── __init__.py
-│   │   └── plot_config.py           # matplotlib + seaborn configurados
 │   ├── repositories/
 │   │   ├── __init__.py
 │   │   ├── movie_repository.py
