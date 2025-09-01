@@ -1,6 +1,6 @@
 import io
 
-from api.config import plt, sns
+from config import plt, sns
 from api.repositories import df
 from api.utils import correlations
 
