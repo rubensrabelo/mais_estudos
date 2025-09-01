@@ -6,6 +6,7 @@ from .routes import hypotheses_router
 from .routes import recommendation_router
 from .routes import gross_analysis
 from .routes import overview_analysis
+from .routes import imdb_rating_router
 
 api_router = APIRouter()
 
@@ -43,4 +44,10 @@ api_router.include_router(
     overview_analysis,
     prefix="/overview_analysis",
     tags=["Overview Analysis"]
+)
+
+api_router.include_router(
+    imdb_rating_router,
+    prefix="/imdb_rating_analysis",
+    tags=["Imdb Rating Analysis"]
 )

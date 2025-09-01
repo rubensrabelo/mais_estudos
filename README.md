@@ -33,11 +33,11 @@ src/
 │   │   ├── movies_plot_service.py
 │   │   ├── movies_recommendation_service.py
 │   │   ├── movies_gross_analysis_service.py
-│   │   └── movies_overview_service.py.py
+│   │   └── movies_overview_service.py
 │   ├── utils/
 │   │   ├── __init__.py
 │   │   ├── correlations.py
 │   │   ├── summary_stats.py
 │   │   ├── add_global_ranking.py
-│   │   └── init_predict_genre.py.py
+│   │   └── init_predict_genre.py
 ```
