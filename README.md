@@ -25,16 +25,19 @@ src/
 │   │   ├── movies_plot_router.py
 │   │   ├── movies_recommendation_router.py
 │   │   └── movies_gross_analysis_router.py
+│   │   ├── movies_overview_router.py
 │   ├── services/
 │   │   ├── __init__.py
 │   │   ├── movies_hypotheses_service.py
 │   │   ├── movies_info_service.py
 │   │   ├── movies_plot_service.py
 │   │   ├── movies_recommendation_service.py
-│   │   └── movies_gross_analysis_service.py
+│   │   ├── movies_gross_analysis_service.py
+│   │   └── movies_overview_service.py.py
 │   ├── utils/
 │   │   ├── __init__.py
 │   │   ├── correlations.py
 │   │   ├── summary_stats.py
-│   │   └── add_global_ranking.py
+│   │   ├── add_global_ranking.py
+│   │   └── init_predict_genre.py.py
 ```

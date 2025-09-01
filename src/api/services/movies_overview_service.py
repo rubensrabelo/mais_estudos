@@ -1,0 +1,64 @@
+import io
+import matplotlib.pyplot as plt
+from wordcloud import WordCloud
+
+from api.repositories import df
+from api.utils import init_model
+
+
+def generate_wordcloud() -> io.BytesIO:
+    """Gera WordCloud com todas as sinopses"""
+    text = " ".join(df["Overview"].dropna().astype(str).tolist())
+    wc = (
+        WordCloud(width=800, height=400, background_color="white")
+        .generate(text)
+    )
+
+    buf = io.BytesIO()
+    plt.figure(figsize=(10, 5))
+    plt.imshow(wc, interpolation="bilinear")
+    plt.axis("off")
+    plt.tight_layout()
+    plt.savefig(buf, format="png")
+    buf.seek(0)
+    return buf
+
+
+def top_words_by_genre(genre: str, top_n: int = 15) -> dict:
+    """Top palavras por gênero via TF-IDF (case-insensitive)"""
+    genre = genre.lower()
+    vectorizer, _, mlb = init_model(df)
+
+    mask = (
+        df["Genre_list"].apply(lambda lst: genre in [g.lower() for g in lst])
+    )
+    docs = df[mask]["Overview"]
+    if docs.empty:
+        return {"error": f"Gênero '{genre}' não encontrado."}
+
+    X_genre = vectorizer.transform(docs)
+    mean_tfidf = X_genre.mean(axis=0).A1
+    features = vectorizer.get_feature_names_out()
+    top_idx = mean_tfidf.argsort()[::-1][:top_n]
+
+    return {features[i]: float(mean_tfidf[i]) for i in top_idx}
+
+
+def predict_genre(overview: str, top_n: int = 5) -> dict:
+    """Prediz gênero(s) a partir da sinopse"""
+    vectorizer, model, mlb = init_model(df)
+    X_new = vectorizer.transform([overview])
+    y_prob = model.predict_proba(X_new)[0]
+
+    top_idx = y_prob.argsort()[::-1][:top_n]
+
+    top_preds = {mlb.classes_[i]: float(y_prob[i]) for i in top_idx}
+
+    predicted_genres = [g for g, p in top_preds.items() if p > 0.2]
+    if not predicted_genres:
+        predicted_genres = [mlb.classes_[top_idx[0]]]
+
+    return {
+        "predicted_genres": predicted_genres,
+        "top_probs": top_preds
+    }

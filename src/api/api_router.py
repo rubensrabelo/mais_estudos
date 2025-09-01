@@ -5,6 +5,7 @@ from .routes import plot_router
 from .routes import hypotheses_router
 from .routes import recommendation_router
 from .routes import gross_analysis
+from .routes import overview_analysis
 
 api_router = APIRouter()
 
@@ -36,4 +37,10 @@ api_router.include_router(
     gross_analysis,
     prefix="/gross_analysis",
     tags=["Gross Analysis"]
+)
+
+api_router.include_router(
+    overview_analysis,
+    prefix="/overview_analysis",
+    tags=["Overview Analysis"]
 )
