@@ -103,6 +103,72 @@ hr.highlight {
   margin: 2rem 0;
 }
 
+/* Estilo base para tabelas */
+table {
+  width: 100%;
+  border-collapse: collapse; /* remove espaçamento interno das células */
+  margin: 1rem 0;
+  font-size: 0.95rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  background: #fff;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* leve sombra */
+  border-radius: 6px;
+  overflow: hidden; /* arredondamento no container */
+}
+
+/* Cabeçalho */
+table thead {
+  background: #222; /* fundo escuro para destacar */
+  color: #fff;
+}
+
+table thead th {
+  text-align: left;
+  padding: 0.8rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border-bottom: 2px solid #444;
+}
+
+/* Linhas e células */
+table tbody tr {
+  border-bottom: 1px solid #eee;
+  transition: background 0.2s ease-in-out;
+}
+
+table tbody tr:nth-child(even) {
+  background: #f9f9f9; /* zebra striping */
+}
+
+table tbody tr:hover {
+  background: #f1f7ff; /* destaque ao passar o mouse */
+}
+
+table td {
+  padding: 0.8rem;
+  font-size: 0.9rem;
+  color: #555;
+  vertical-align: middle;
+}
+
+/* Ajuste para números (alinha à direita) */
+table td:nth-child(3),
+table td:nth-child(4),
+table td:nth-child(5),
+table td:nth-child(6),
+table td:nth-child(7),
+table td:nth-child(8) {
+  text-align: right;
+}
+
+/* Posição mais destacada */
+table tbody td:first-child {
+  font-weight: bold;
+  text-align: center;
+  color: #0066cc;
+}
+
 
 /* Footer */
 footer {
