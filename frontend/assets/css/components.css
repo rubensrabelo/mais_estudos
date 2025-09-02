@@ -36,18 +36,43 @@ input, textarea, select {
   font-size: 1rem;
 }
 
-/* chart container */
+/* Card dos gráficos */
 .chart {
-  margin: 2rem 0;
-  padding: 1rem;
+  margin: 1rem auto;              /* menos espaço externo */
+  padding: 0.5rem;                /* respiro interno menor */
   background: #fff;
-  border: 1px solid #eee;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  border: 1px solid #ddd;
+  border-radius: 10px;            /* leve arredondamento */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06); /* sombra mais leve */
+  max-width: 600px;               /* card mais compacto */
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
+.chart:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Título do gráfico */
+.chart h2 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #222;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 0.3rem;          /* menos espaço */
+}
+
+/* Imagens dentro do card */
 .chart img {
-  max-width: 100%;
+  max-width: 80%;   /* ocupa mais o card */
   height: auto;
-  margin-top: 1rem;
+  border-radius: 6px;
+  margin-top: 0.3rem;
+  transition: transform 0.2s ease;
+}
+
+.chart img:hover {
+  transform: scale(1.02);
 }

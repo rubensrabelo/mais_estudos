@@ -10,19 +10,163 @@
 
 <body>
   <header>
-    <h1>🎬 Análise de Filmes - IMDB</h1>
+    <h1>🎬 Análise Exploratória de Filmes - IMDB</h1>
     <nav>
-      <a href="./assets/pages/analysis.html">Análises</a>
-      <a href="./assets/pages/predict.html">Previsões</a>
+      <a href="./analysis.html">Análises</a>
+      <a href="./predict.html">Previsões</a>
     </nav>
   </header>
 
-
   <main>
-    <section id="charts" class="charts-container">
-      <!-- Gráficos carregados via JS -->
+    <section id="eda-intro" class="intro">
+      <h2>Resumo Geral da Base de Filmes</h2>
+      <p>Carregando dados...</p>
     </section>
+
+    <hr />
+
+    <!-- Gráfico está vindo errado -->
+    <section>
+      <h2>Distribuição de Gêneros</h2>
+      <p>Aqui observamos os 10 gêneros mais frequentes, revelando preferências da indústria e espaço de mercado.</p>
+      <div id="chart-genres" class="chart"></div>
+    </section>
+
+    <!-- Gráfico está vindo errado -->
+    <section id="heatmap">
+      <h2>Correlação entre Variáveis</h2>
+      <p></p>
+      <div id="chart-corr" class="chart"></div>
+    </section>
+
+    <section>
+      <h2>IMDB Rating vs Receita (Gross)</h2>
+      <p>Este gráfico revela a relação entre a nota do filme e sua arrecadação. Tendência: filmes bem avaliados tendem a
+        performar melhor, mas há outliers.</p>
+      <div id="chart-imdbVsGross" class="chart"></div>
+    </section>
+
+    <section>
+      <h2>Distribuição de Variáveis</h2>
+      <p>Histogramas mostram como variáveis importantes estão distribuídas, como notas do IMDB, duração e receitas.</p>
+      <div id="chart-histogram" class="chart"></div>
+    </section>
+
+    <hr />
+
+    <section id="genre-gross">
+      <h2>Gênero vs Receita</h2>
+      <p>Hipótese: Filmes de aventura e ação tendem a arrecadar mais. Top 5 gêneros por média de receita:</p>
+
+      <h3>
+        <h3>Como foi feito:</h3>
+      </h3>
+      <ul>
+        <li>Foi calculada a média de arrecadação (Gross) por gênero.</li>
+        <li>Considerou-se apenas os 20 gêneros principais (os mais frequentes na base de dados).</li>
+      </ul>
+
+      <h3>Resultado:</h3>
+
+      <p class="hypothesis-result">Carregando análise...</p>
+
+      <h3>
+        <h3>Análise:</h3>
+      </h3>
+
+      <ul>
+        <li>Filmes de aventura e ação realmente lideram em média de bilheteria, possivelmente por atraírem públicos
+          amplos e incluírem grandes produções de estúdio com marketing pesado.</li>
+
+        <li>Gêneros como drama, romance e musical apresentam médias mais baixas, indicando um público mais restrito ou
+          menor investimento em marketing.</li>
+      </ul>
+    </section>
+
+    <section id="runtime-rating">
+      <h2>Duração vs Avaliação</h2>
+      <p>Hipótese: Filmes com runtime mais longo podem ter avaliações mais altas no IMDB</p>
+
+      <h3>
+        <h3>Como foi feito:</h3>
+      </h3>
+
+      <ul>
+        <li>Calculou-se a correlação de Spearman entre o tempo de duração (Runtime_min) e a nota do IMDB (IMDB_Rating).
+        </li>
+      </ul>
+
+      <h3>Resultado:</h3>
+
+      <p class="hypothesis-result">Carregando análise...</p>
+
+      <h3>Análise:</h3>
+
+      <ul>
+        <li>Existe uma correlação positiva fraca. Filmes mais longos tendem a receber avaliações ligeiramente melhores,
+          possivelmente porque durações maiores permitem narrativas mais complexas e desenvolvimento de personagens.
+        </li>
+
+        <li>Porém, a correlação não é forte, mostrando que duração sozinha não garante boas avaliações.</li>
+      </ul>
+    </section>
+
+    <section id="votes-gross">
+      <h2>Popularidade (votos) vs Receita</h2>
+      <p>Hipótese: Filmes com muitos votos no IMDB tendem a ter maior faturamento</p>
+
+      <h3>
+        <h3>Como foi feito:</h3>
+      </h3>
+
+      <ul>
+        <li>Calculou-se a correlação de Spearman entre o número de votos (No_of_Votes) e receita (Gross).</li>
+      </ul>
+
+      <h3>Resultado:</h3>
+
+      <p class="hypothesis-result">Carregando análise...</p>
+
+      <h3>Análise:</h3>
+
+      <ul>
+        <li>Correlação forte positiva. Mais votos indicam maior visibilidade e popularidade, refletindo diretamente na
+          arrecadação.</li>
+
+        <li>Isso confirma a hipótese de que a popularidade do público é um bom indicador de sucesso comercial.</li>
+      </ul>
+    </section>
+
+    <section id="age-gross">
+      <h2>Idade do Filme vs Receita</h2>
+      <p>Hipótese: O fator “tempo” (idade do filme) pode influenciar receita</p>
+
+      <h3>Como foi feito:</h3>
+
+      <ul>
+        <li>Agrupou-se os filmes por década de lançamento (Age) e calculou-se a média de Gross por período.</li>
+      </ul>
+
+      <h3>Resultado:</h3>
+
+      <p class="hypothesis-result">Carregando análise...</p>
+
+      <h3>Análise:</h3>
+
+      <ul>
+        <li>Filmes mais antigos ainda conseguem gerar receita significativa, especialmente clássicos como The Godfather
+          (1972), que são relançados ou mantêm relevância cultural.</li>
+
+        <li>Décadas mais recentes tendem a arrecadar menos em média, provavelmente por incluir filmes de menor escala ou
+          por efeito de dispersão de títulos.</li>
+      </ul>
+    </section>
+
+    <hr />
   </main>
+
+
+
 
   <script src="../js/analysis.js"></script>
 </body>

@@ -1,3 +1,4 @@
+/* Layout do header e nav já existente */
 header {
   background: #222;
   color: #fff;
@@ -22,12 +23,88 @@ nav a:hover {
   color: #ffd43b;
 }
 
+/* Main container */
 main {
   max-width: 900px;
   margin: 2rem auto;
   padding: 0 1rem;
+  line-height: 1.6; /* melhora a leitura do texto */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
 }
 
+/* Cada seção de análise */
+main section {
+  margin-bottom: 2.5rem;
+}
+
+/* Título da seção */
+main section h2 {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #222;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 0.3rem;
+}
+
+/* Parágrafo de descrição */
+main section p {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 1rem;
+  text-align: justify;
+}
+
+/* Estilo para listas não ordenadas */
+main section ul {
+  margin: 0.5rem 0 1rem 1.5rem; /* espaçamento da lista */
+  padding: 0;
+  list-style-type: disc; /* bolinhas padrão */
+  color: #555;
+  line-height: 1.6;
+}
+
+/* Estilo para cada item da lista */
+main section ul li {
+  margin-bottom: 0.5rem; /* espaço entre itens */
+  font-size: 1rem;
+  text-align: justify; /* deixa o texto alinhado */
+}
+
+/* Alternativa: se quiser listas numeradas */
+main section ol {
+  margin: 0.5rem 0 1rem 2rem;
+  padding: 0;
+  list-style-type: decimal;
+  color: #555;
+  line-height: 1.6;
+}
+
+main section ol li {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  text-align: justify;
+}
+
+/* Linha horizontal estilizada */
+hr {
+  border: none;               /* Remove a borda padrão */
+  height: 2px;                /* Espessura da linha */
+  background: #ddd;           /* Cor da linha */
+  margin: 1.5rem 0;           /* Espaçamento acima e abaixo */
+  border-radius: 2px;         /* Leve arredondamento nas extremidades */
+}
+
+/* Opcional: variação mais destacada */
+hr.highlight {
+  height: 3px;
+  background: linear-gradient(to right, #0066cc, #00aaff);
+  margin: 2rem 0;
+}
+
+
+/* Footer */
 footer {
   background: #222;
   color: #bbb;
@@ -35,3 +112,4 @@ footer {
   padding: 1rem;
   margin-top: 2rem;
 }
+
