@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Análise de Filmes - IMDB</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+    <header>
+        <h1>🎬 Análise de Filmes - IMDB</h1>
+        <nav>
+            <a href="./analysis.html">Análises</a>
+            <a href="./predict.html">Previsões</a>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Prever Nota IMDB</h2>
+        <form id="predict-form">
+            <label>Título: <input type="text" name="Series_Title" required></label>
+            <label>Ano: <input type="number" name="Released_Year" required></label>
+            <label>Certificado: <input type="text" name="Certificate"></label>
+            <label>Runtime: <input type="text" name="Runtime" value="120 min"></label>
+            <label>Gênero: <input type="text" name="Genre" required></label>
+            <label>Meta_score: <input type="number" name="Meta_score"></label>
+            <label>Votos: <input type="number" name="No_of_Votes"></label>
+            <label>Gross: <input type="text" name="Gross"></label>
+            <button type="submit">Prever</button>
+        </form>
+
+        <div id="result"></div>
+    </main>
+
+    <script src="js/predict.js"></script>
+</body>
+
+</html>
