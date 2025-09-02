@@ -1,33 +1,36 @@
-const plots = [
-    { url: "http://127.0.0.1:8000/plots/correlations/download", name: "heatmap_correlations" },
-    { url: "http://127.0.0.1:8000/plots/imbd_vs_gross/download", name: "imdb_vs_gross" },
-    { url: "http://127.0.0.1:8000/plots/genres/download", name: "top10_genres" },
-    { url: "http://127.0.0.1:8000/plots/histogram/IMDB_Rating/download", name: "histogram_IMDB_Rating" },
+// Rotas do backend que geram e salvam os gráficos
+const plotRoutes = [
+  "http://localhost:8000/plots/histogram/Genre/save",
+  "http://localhost:8000/plots/imbd_vs_gross/save"
 ];
 
-const container = document.getElementById("plots-container");
+async function loadPlots() {
+  const chartContainer = document.getElementById("charts");
 
-plots.forEach(plot => {
-    fetch(plot.url)
-        .then(response => response.blob())
-        .then(blob => {
-            const imgURL = URL.createObjectURL(blob);
+  for (const route of plotRoutes) {
+    try {
+      const response = await fetch(route);
+      const data = await response.json();
 
-            const img = document.createElement("img");
-            img.src = imgURL;
-            img.alt = plot.name;
-            img.style.maxWidth = "600px";
-            img.style.marginBottom = "20px";
+      if (data.path) {
+        // Pega apenas o nome do arquivo (independente de "\" ou "/")
+        const fileName = data.path.split(/[\\/]/).pop();
 
-            const link = document.createElement("a");
-            link.href = imgURL;
-            link.download = plot.name + ".png";
-            link.textContent = "Download " + plot.name;
-            link.style.display = "block";
-            link.style.marginBottom = "40px";
+        // Monta a URL pública usando a rota /img/
+        const img = document.createElement("img");
+        img.src = `http://localhost:8000/img/${fileName}`;
+        img.alt = "Gráfico de filmes";
+        img.classList.add("chart");
 
-            container.appendChild(img);
-            container.appendChild(link);
-        })
-        .catch(err => console.error("Erro ao baixar plot:", err));
-});
+        chartContainer.appendChild(img);
+      } else {
+        console.warn("Não recebeu 'path' do backend:", data);
+      }
+    } catch (err) {
+      console.error("Erro ao carregar gráfico:", err);
+    }
+  }
+}
+
+// Carrega os gráficos quando a página estiver pronta
+document.addEventListener("DOMContentLoaded", loadPlots);

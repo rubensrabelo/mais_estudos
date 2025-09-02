@@ -1,3 +1,4 @@
+/* buttons */
 button {
   background: #0066cc;
   color: #fff;
@@ -13,6 +14,7 @@ button:hover {
   background: #004d99;
 }
 
+/* forms */
 form {
   display: flex;
   flex-direction: column;
@@ -34,6 +36,7 @@ input, textarea, select {
   font-size: 1rem;
 }
 
+/* chart container */
 .chart {
   margin: 2rem 0;
   padding: 1rem;
