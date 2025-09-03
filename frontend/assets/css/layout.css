@@ -103,6 +103,27 @@ hr.highlight {
   margin: 2rem 0;
 }
 
+.recommendation-card {
+  background: #f9f9f9;
+  border-left: 6px solid #ffd43b;
+  padding: 1rem 1.5rem;
+  margin: 1rem 0;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.recommendation-card h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.3rem;
+  color: #222;
+}
+
+.recommendation-card .rec-year {
+  font-weight: normal;
+  color: #666;
+  font-size: 1rem;
+}
+
 /* Estilo base para tabelas */
 table {
   width: 100%;
@@ -167,6 +188,109 @@ table tbody td:first-child {
   font-weight: bold;
   text-align: center;
   color: #0066cc;
+}
+
+.highlight-trilogy {
+  background-color: #fff9e6; /* fundo amarelo claro */
+  font-weight: bold;
+  border-left: 5px solid #ffd43b; /* barra de destaque */
+}
+
+.highlight-trilogy td {
+  color: #222;
+}
+
+/* Seção de previsão */
+#overview-predict-section {
+  max-width: 700px;
+  margin: 0 auto 40px auto;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+/* H4 clicável */
+#overview-predict-section h4 {
+  text-align: center;
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+  color: #333;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+#overview-predict-section h4:hover {
+  text-decoration: underline;
+  color: #4a90e2;
+}
+
+/* Conteúdo oculto inicialmente */
+#overview-predict-content {
+  display: none;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 15px 0;
+}
+
+/* Container do textarea */
+#overview-input-container {
+  position: relative;
+  width: 100%;
+}
+
+/* Textarea */
+#overview-input {
+  width: 100%;
+  min-height: 100px;
+  padding: 15px 15px 40px 15px; /* espaço inferior para o botão */
+  font-size: 1rem;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  resize: vertical;
+  transition: all 0.3s ease;
+  background: #fff;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+}
+
+#overview-input:focus {
+  border-color: #4a90e2;
+  box-shadow: 0 0 10px rgba(74,144,226,0.2);
+  outline: none;
+}
+
+/* Botão no canto inferior direito */
+#predict-btn {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  padding: 6px 12px;
+  font-size: 0.9rem;
+  background: linear-gradient(135deg, #4a90e2, #357ab8);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+#predict-btn:hover {
+  background: linear-gradient(135deg, #357ab8, #2a5d92);
+  transform: translateY(-1px);
+}
+
+/* Output de previsão */
+#predict-genre {
+  margin-top: 20px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  min-height: 50px;
+  font-size: 1rem;
+  color: #333;
 }
 
 

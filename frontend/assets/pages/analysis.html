@@ -173,38 +173,124 @@
 
     <h1>Recomendação de Filmes</h1>
 
-  <section id="recommendation">
-    <h2>🎥 Indicação de Filme</h2>
-    <div id="recommendation-content">Carregando...</div>
-  </section>
+    <section id="recommendation">
+      <h2>🎥 Indicação de Filme</h2>
+      <p>
+        Quando falamos em “melhor filme”, cada pessoa pode dar peso diferente: alguns olham para a crítica
+        especializada, outros para a bilheteria, outros para a opinião do público.
+        Para evitar vieses e criar uma visão mais equilibrada, foi criado um <strong>Global Score</strong>, que combina
+        múltiplos fatores em um único ranking.
+      </p>
 
-  <section id="top10">
-    <h2>🏆 Top 10 Filmes</h2>
-    <div id="top10-list">Carregando...</div>
-  </section>
+      <h3>📊 Como cheguei no TOP 10 (Global Score)</h3>
+      <p>O cálculo considerou 4 dimensões com pesos diferentes:</p>
 
-  <section id="gross-analysis">
-    <h2>💰 Fatores do Faturamento</h2>
-    <div id="gross-content">Carregando...</div>
-  </section>
+      <ul>
+        <li><strong>Nota do IMDB</strong> (peso 2)</li>
+        <li><strong>Número de votos</strong> (peso 2)</li>
+        <li><strong>Receita bruta</strong> (peso 1)</li>
+        <li><strong>Meta Score</strong> (peso 1)</li>
+      </ul>
 
-  <section id="overview-analysis">
-    <h2>📝 Análise de Overview</h2>
-    <h3>Wordcloud</h3>
-    <img id="wordcloud" alt="Wordcloud">
-    <h3>Top palavras (Action)</h3>
-    <pre id="top-words">Carregando...</pre>
-    <h3>Exemplo de Predição de Gênero</h3>
-    <pre id="predict-genre">Carregando...</pre>
-  </section>
+      <p>
+        Isso garante que filmes populares e bem avaliados sejam priorizados, sem deixar de lado o reconhecimento da
+        crítica ou o impacto comercial.
+      </p>
 
-  <hr />
-  </main>
+      <p>
+        Logo, se eu tivesse que recomendar um filme para alguém que não conheço, a escolha ideal seria uma obra que
+        combine:
+      </p>
+
+      <ul>
+        <li>Grande aceitação do público (nota alta no IMDB e muitos votos);</li>
+        <li>Reconhecimento da crítica (Meta Score elevado);</li>
+        <li>Sucesso comercial (alta bilheteria).</li>
+      </ul>
+
+      <p>
+        Pelos dados retornados pela API, o título que melhor resume esses fatores é:
+      </p>
+
+      <div id="recommendation-content">Carregando...</div>
+
+      <p>
+        Esse filme equilibra popularidade, qualidade artística/técnica e impacto financeiro — uma aposta segura para
+        agradar até sem conhecer os gostos da pessoa.
+      </p>
+
+      <p>
+        Entretanto, como se trata de uma trilogia, minha sugestão seria que a pessoa começasse assistindo pelo
+        <strong>primeiro filme</strong>, garantindo a experiência narrativa completa.
+        Curiosamente, o <strong>filme mais recomendado (2º da trilogia)</strong> aparece em 1º lugar no ranking,
+        enquanto o <strong>primeiro filme</strong> ocupa a 3ª posição e o <strong>terceiro</strong> está em 7º.
+        Isso mostra que <em>toda a trilogia apresenta métricas consistentes de qualidade e relevância</em>.
+      </p>
+    </section>
+
+    <section id="top10">
+      <h2>Top 10 Filmes</h2>
+      <div id="top10-list">Carregando...</div>
+    </section>
 
 
+    <section id="gross-analysis">
+      <h2>Fatores do Faturamento</h2>
+      <div id="gross-content">Carregando...</div>
+    </section>
+
+    <section id="overview-analysis">
+      <h2>Análise de Overview</h2>
+      <h3>Wordcloud</h3>
 
 
-  <script src="../js/analysis.js"></script>
+      <h3>Exemplo de Predição de Gênero</h3>
+
+
+      <h4>Aplicação em modelos de previsão:</h4>
+      <p>Um modelo de NLP consegue utilizar essas palavras para prever o gênero do filme com boa precisão.</p>
+
+      📌 <strong>Exemplo de predição real:</strong>
+      <p><em>Input:</em></p>
+      <p>“A young wizard fights dark forces in a magical world full of mysteries and adventures.”</p>
+
+      <div id="example-output">
+        <p><strong>Output:</strong></p>
+        <ul>
+          <li>Drama (59%)</li>
+          <li>Adventure (28%)</li>
+          <li>Comedy / Action (probabilidades menores)</li>
+        </ul>
+      </div>
+
+      ✅ <strong>Conclusão:</strong>
+      <p>
+        Sim, é possível prever o gênero a partir do overview. Esse recurso pode ser aplicado em:
+      </p>
+      <ul>
+        <li>Sistemas de recomendação, para sugerir filmes automaticamente;</li>
+        <li>Marketing e posicionamento, ao identificar público-alvo a partir da narrativa;</li>
+        <li>Análises de mercado, entendendo tendências de gêneros em descrições de lançamentos.</li>
+      </ul>
+    </section>
+
+    <hr />
+
+    <section id="overview-predict-section">
+      <h4>Teste você mesmo:</h4>
+
+      <div id="overview-predict-content">
+        <div id="overview-input-container">
+          <textarea id="overview-input" rows="3"
+            placeholder="Digite aqui a descrição (overview) do filme..."></textarea>
+          <button id="predict-btn">Prever</button>
+        </div>
+        <div id="predict-genre">Digite um overview e clique em prever.</div>
+      </div>
+    </section>
+
+
+    <script src="../js/analysis.js"></script>
 </body>
 
 </html>

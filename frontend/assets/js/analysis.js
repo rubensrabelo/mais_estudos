@@ -32,10 +32,10 @@ async function loadSummary() {
     `;
 
     // Seleciona o parágrafo da seção do heatmap
-const heatmapIntro = document.querySelector("#heatmap p");
+    const heatmapIntro = document.querySelector("#heatmap p");
 
-// Preenche com o resumo da API
-heatmapIntro.innerHTML += `
+    // Preenche com o resumo da API
+    heatmapIntro.innerHTML += `
     <p>Observando as correlações entre variáveis apresentada no gráfico:</p>
     <ul>
       <li>A receita (Gross) apresenta correlação moderada e positiva com o número de votos (<strong>${grossVotesCorr}</strong>), indicando que filmes mais votados tendem a arrecadar mais.</li>
@@ -110,7 +110,7 @@ async function loadHypotheses() {
     const ageResultP = document.querySelector("#age-gross .hypothesis-result");
     if (ageResultP) ageResultP.innerHTML = `<ul>${topYears}</ul>`;
 
-  } catch(err) {
+  } catch (err) {
     console.error("Erro ao carregar hipóteses:", err);
   }
 }
@@ -121,11 +121,13 @@ async function loadRecommendationData() {
     const recRes = await fetch("http://127.0.0.1:8000/recommendations/");
     const rec = await recRes.json();
     document.getElementById("recommendation-content").innerHTML = `
-      <p>
-        <strong>${rec.title}</strong> (${rec.year})<br>
-        IMDb: <strong>${rec.imdb}</strong> | Meta Score: <strong>${rec.meta_score}</strong><br>
-        Votos: ${rec.votes.toLocaleString()} | Bilheteria: $${rec.gross.toLocaleString()}
-      </p>
+      <div class="recommendation-card">
+        <h3 class="rec-title">${rec.title} <span class="rec-year">(${rec.year})</span></h3>
+        <p>
+          ⭐ IMDb: <strong>${rec.imdb}</strong> | 📰 Meta Score: <strong>${rec.meta_score}</strong><br>
+          👥 Votos: ${rec.votes.toLocaleString()} | 💰 Bilheteria: $${rec.gross.toLocaleString()}
+        </p>
+      </div>
     `;
 
     // 2. Top 10 (em tabela)
@@ -149,101 +151,125 @@ async function loadRecommendationData() {
         <tbody>
     `;
 
+    const trilogy = [
+      "The Lord of the Rings: The Return of the King",
+      "The Lord of the Rings: The Fellowship of the Ring",
+      "The Lord of the Rings: The Two Towers"
+    ];
+
     top10.forEach((m, i) => {
+      const isTrilogy = trilogy.includes(m.title);
       table += `
-        <tr>
-          <td>${i + 1}</td>
-          <td><strong>${m.title}</strong></td>
-          <td>${m.year}</td>
-          <td>${m.imdb}</td>
-          <td>${m.meta_score}</td>
-          <td>${m.votes.toLocaleString()}</td>
-          <td>$${m.gross.toLocaleString()}</td>
-          <td>${m.global_score}</td>
-        </tr>
-      `;
+    <tr class="${isTrilogy ? "highlight-trilogy" : ""}">
+      <td>${i + 1}</td>
+      <td><strong>${m.title}</strong></td>
+      <td>${m.year}</td>
+      <td>${m.imdb}</td>
+      <td>${m.meta_score}</td>
+      <td>${m.votes.toLocaleString()}</td>
+      <td>$${m.gross.toLocaleString()}</td>
+      <td>${m.global_score}</td>
+    </tr>
+  `;
     });
+
 
     table += "</tbody></table>";
     document.getElementById("top10-list").innerHTML = table;
 
     // 3. Fatores de Faturamento (apresentação melhor)
+    // 3. Fatores de Faturamento (apresentação em texto explicativo)
     const grossRes = await fetch("http://127.0.0.1:8000/gross_analysis/all");
     const gross = await grossRes.json();
 
     document.getElementById("gross-content").innerHTML = `
-      <h3>📈 Correlações com Receita</h3>
-      <ul>
-        <li>Votos (No_of_Votes): <strong>${gross.correlations.No_of_Votes.toFixed(2)}</strong></li>
-        <li>Tempo de Duração (Runtime_min): <strong>${gross.correlations.Runtime_min.toFixed(2)}</strong></li>
-        <li>Nota IMDb: <strong>${gross.correlations.IMDB_Rating.toFixed(2)}</strong></li>
-        <li>Idade do Filme (Age): <strong>${gross.correlations.Age.toFixed(2)}</strong></li>
-      </ul>
+    <p>
+      Mais votos no IMDB (<strong>${gross.correlations.No_of_Votes.toFixed(2)}</strong>) → 
+      maior receita → popularidade impulsiona bilheteria.
+    </p>
+    <p>
+      Tempo de duração (<strong>${gross.correlations.Runtime_min.toFixed(2)}</strong>) → 
+      filmes mais longos tendem a arrecadar um pouco mais, mas efeito fraco.
+    </p>
+    <p>
+      IMDb Rating (<strong>${gross.correlations.IMDB_Rating.toFixed(2)}</strong>) → 
+      relação positiva, mas baixa. Ter nota alta ajuda, mas não garante sucesso financeiro.
+    </p>
+    <p>
+      Idade do filme (<strong>${gross.correlations.Age.toFixed(2)}</strong>) → 
+      obras mais antigas arrecadam menos no mercado atual (salvo exceções como relançamentos).
+    </p>
 
-      <h3>🧮 Regressão Linear</h3>
-      <p>R² Score: <strong>${gross.regression.r2_score.toFixed(2)}</strong></p>
-      <ul>
-        <li>Intercepto: ${gross.regression.intercept.toFixed(2)}</li>
-        <li>Coef. IMDb: ${gross.regression.coefficients.IMDB_Rating.toFixed(2)}</li>
-        <li>Coef. Votos: ${gross.regression.coefficients.No_of_Votes.toFixed(2)}</li>
-        <li>Coef. Runtime: ${gross.regression.coefficients.Runtime_min.toFixed(2)}</li>
-        <li>Coef. Age: ${gross.regression.coefficients.Age.toFixed(2)}</li>
-      </ul>
+    <h3>Principais categorias vencedoras:</h3>
+    <p>
+      <strong>Gêneros:</strong> 
+      ${Object.keys(gross.top_categories.top_genres).slice(0, 5).join(", ")}.
+    </p>
+    <p>
+      <strong>Diretores:</strong> 
+      ${Object.keys(gross.top_categories.top_directors).slice(0, 2).join(" e ")} 
+      lideram, ambos com grande histórico de blockbusters.
+    </p>
+  `;
 
-      <h3>🏆 Gêneros mais lucrativos</h3>
-      <ul>
-        ${Object.entries(gross.top_categories.top_genres)
-          .map(([g, v]) => `<li>${g}: $${v.toLocaleString()}</li>`)
-          .join("")}
-      </ul>
-
-      <h3>🎬 Diretores mais lucrativos</h3>
-      <ul>
-        ${Object.entries(gross.top_categories.top_directors)
-          .map(([d, v]) => `<li>${d}: $${v.toLocaleString()}</li>`)
-          .join("")}
-      </ul>
-    `;
 
     // 4. Overview Wordcloud
     document.getElementById("wordcloud").src =
       "http://127.0.0.1:8000/overview_analysis/wordcloud";
 
-    // 5. Overview Top Words
-    const topWordsRes = await fetch("http://127.0.0.1:8000/overview_analysis/top-words?genre=action&top_n=10");
-    const topWords = await topWordsRes.json();
-    document.getElementById("top-words").innerHTML = `
-      <ul>
-        ${Object.entries(topWords)
-          .map(([w, v]) => `<li>${w} (${(v * 100).toFixed(2)}%)</li>`)
-          .join("")}
-      </ul>
-    `;
 
+    const overviewText = document.getElementById("overview-input").value.trim();
     // 6. Predição de Gênero
-    const predictRes = await fetch("http://127.0.0.1:8000/overview_analysis/predict-genre", {
-      method: "POST",
-      headers: {"Content-Type": "application/json"},
-      body: JSON.stringify({
-        overview: "A young wizard fights dark forces in a magical world full of mysteries and adventures."
-      })
-    });
-    const predict = await predictRes.json();
-
-    document.getElementById("predict-genre").innerHTML = `
-      <p><strong>Gêneros previstos:</strong> ${predict.predicted_genres.join(", ")}</p>
-      <h4>Probabilidades:</h4>
-      <ul>
-        ${Object.entries(predict.top_probs)
-          .map(([g, v]) => `<li>${g}: ${(v * 100).toFixed(1)}%</li>`)
-          .join("")}
-      </ul>
-    `;
-
+    predictGenre(overviewText)
   } catch (err) {
     console.error("Erro ao carregar dados:", err);
   }
 }
+
+// Função para chamar o modelo com overview customizado
+// Toggle do conteúdo ao clicar no H4
+const h4 = document.querySelector("#overview-predict-section h4");
+const content = document.getElementById("overview-predict-content");
+
+h4.addEventListener("click", () => {
+  content.style.display = content.style.display === "none" ? "block" : "none";
+});
+
+// Função para chamar o modelo com overview customizado
+async function predictGenre(overviewText) {
+  try {
+    const predictRes = await fetch("http://127.0.0.1:8000/overview_analysis/predict-genre", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ overview: overviewText })
+    });
+
+    const predict = await predictRes.json();
+    const topPredictions = predict.predicted_genres.slice(0, 2);
+
+    document.getElementById("predict-genre").innerHTML = `
+      <p><strong>Output:</strong></p>
+      <ul>
+        ${topPredictions
+          .map(g => `<li>${g} (${(predict.top_probs[g] * 100).toFixed(1)}%)</li>`)
+          .join("")}
+      </ul>
+    `;
+  } catch (err) {
+    console.error("Erro ao prever gênero:", err);
+    document.getElementById("predict-genre").innerHTML = `<p style="color:red;">Erro ao carregar previsão.</p>`;
+  }
+}
+
+// Evento do botão
+document.getElementById("predict-btn").addEventListener("click", () => {
+  const overviewText = document.getElementById("overview-input").value.trim();
+  if (!overviewText) {
+    document.getElementById("predict-genre").innerHTML = `<p style="color:red;">Por favor, digite uma descrição.</p>`;
+    return;
+  }
+  predictGenre(overviewText);
+});
 
 
 document.addEventListener("DOMContentLoaded", () => {
