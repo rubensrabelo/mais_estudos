@@ -15,6 +15,12 @@ def save_wordcloud() -> str:
     Gera WordCloud com todas as sinopses e salva a imagem
     """
     text = " ".join(df["Overview"].dropna().astype(str).tolist())
+
+    if not text.strip():
+        raise ValueError(
+            "Não há dados válidos em df['Overview'] para gerar a wordcloud."
+        )
+
     wc = WordCloud(
         width=800,
         height=400,
@@ -22,7 +28,7 @@ def save_wordcloud() -> str:
     ).generate(text)
 
     plt.figure(figsize=(10, 5))
-    plt.imshow(wc, interpolation="bilinear")
+    plt.imshow(wc.to_array(), interpolation="bilinear")
     plt.axis("off")
     plt.tight_layout()
 
