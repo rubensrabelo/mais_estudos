@@ -8,10 +8,13 @@ from .data.movie_list import MOVIE_TITLES
 
 
 def main():
+    """
+    Coleta, processa e salva dados de filmes recentes (2021+) em um CSV.
+    """
     movies_data = []
     idx = 0
     total_titles = len(MOVIE_TITLES)
-    
+
     while len(movies_data) < 200:
         title = MOVIE_TITLES[idx % total_titles]
         idx += 1
