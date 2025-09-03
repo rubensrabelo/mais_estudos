@@ -3,6 +3,10 @@ import numpy as np
 
 
 def load_and_clean_dataset(path: str) -> pd.DataFrame:
+    """
+    Carrega o dataset a partir de um CSV e limpa colunas numéricas, votos,
+    duração, notas e metascore.
+    """
     df = pd.read_csv(path)
 
     def parse_number(x):

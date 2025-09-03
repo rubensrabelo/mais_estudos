@@ -9,6 +9,10 @@ IMG_DIR.mkdir(parents=True, exist_ok=True)
 
 
 def plot_corr_heatmap() -> str:
+    """
+    Gera e salva um heatmap de correlações das variáveis numéricas.
+    Retorna o caminho do arquivo salvo.
+    """
     plt.figure(figsize=(10, 8))
     corr = correlations(df)
     sns.heatmap(
@@ -28,6 +32,10 @@ def plot_corr_heatmap() -> str:
 
 
 def plot_imbd_vs_gross() -> str:
+    """
+    Gera e salva um gráfico de dispersão entre IMDB Rating e Gross.
+    Retorna o caminho do arquivo salvo.
+    """
     plt.figure(figsize=(10, 6))
     ax = sns.scatterplot(
         data=df,
@@ -53,6 +61,10 @@ def plot_imbd_vs_gross() -> str:
 
 
 def plot_genres() -> str:
+    """
+    Gera e salva um gráfico de barras dos 10 gêneros mais frequentes.
+    Retorna o caminho do arquivo salvo.
+    """
     plt.figure(figsize=(10, 6))
     genre_counts = (
         df.explode("Genre_list")["Genre_list"].value_counts().head(10)
@@ -72,6 +84,10 @@ def plot_genres() -> str:
 
 
 def plot_histogram(column: str) -> str:
+    """
+    Gera e salva um histograma de uma coluna numérica do dataset.
+    Retorna o caminho do arquivo salvo.
+    """
     plt.figure(figsize=(8, 6))
     ax = sns.histplot(
         df[column].dropna(),

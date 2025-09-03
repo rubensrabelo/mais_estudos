@@ -5,6 +5,9 @@ from api.repositories import df
 
 # Filmes de ação e aventura tendem a ter maiores bilheterias (Gross).
 def genre_vs_gross() -> dict:
+    """
+    Retorna a mediana de Gross para cada gênero de filme.
+    """
     genre_gross = (
         df.explode("Genre_list")
         .groupby("Genre_list")["Gross"]
@@ -16,12 +19,18 @@ def genre_vs_gross() -> dict:
 
 # Filmes com runtime mais longo podem ter avaliações mais altas no IMDB.
 def runtime_vs_rating() -> dict:
+    """
+    Calcula a correlação de Spearman entre duração do filme e IMDB Rating.
+    """
     corr = df["Runtime_min"].corr(df["IMDB_Rating"], method="spearman")
     return {"spearman_corr": corr}
 
 
 # Filmes com muitos votos no IMDB tendem a ter maior faturamento.
 def votes_vs_gross() -> dict:
+    """
+    Calcula a correlação de Spearman entre número de votos e Gross.
+    """
     corr = df["No_of_Votes"].corr(df["Gross"], method="spearman")
     return {"spearman_corr": corr}
 
@@ -29,6 +38,9 @@ def votes_vs_gross() -> dict:
 # O fator "tempo" (idade do filme) pode ser importante: clássicos antigos
 # com notas altas ainda geram receita em relançamentos (The Godfather, 1972).
 def year_vs_success() -> dict:
+    """
+    Retorna a mediana de Gross por década de lançamento dos filmes.
+    """
     df["Age"] = 2025 - df["Released_Year"]
     decade = (df["Released_Year"] // 10) * 10
     avg_by_decade = (

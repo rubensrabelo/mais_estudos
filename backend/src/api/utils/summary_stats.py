@@ -2,6 +2,10 @@ import pandas as pd
 
 
 def summary_stats(df: pd.DataFrame) -> dict:
+    """
+    Retorna estatísticas resumidas do DataFrame de filmes, incluindo médias
+    e diretor mais frequente.
+    """
     return {
         "count": len(df),
         "gross_mean": float(df["Gross"].mean()),

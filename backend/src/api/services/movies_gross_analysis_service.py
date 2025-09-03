@@ -4,6 +4,9 @@ from api.repositories import df
 
 
 def gross_correlation() -> dict:
+    """
+    Retorna a correlação entre Gross e outras variáveis numéricas do dataset.
+    """
     num_cols = [
         "Gross",
         "IMDB_Rating",
@@ -16,6 +19,10 @@ def gross_correlation() -> dict:
 
 
 def gross_regression():
+    """
+    Ajusta uma regressão linear para Gross usando IMDB_Rating, votos, duração
+    e idade. Retorna coeficientes, intercepto e R².
+    """
     X = df[[
         "IMDB_Rating",
         "No_of_Votes",
@@ -39,6 +46,9 @@ def gross_regression():
 
 
 def gross_top_categories():
+    """
+    Retorna os 5 principais gêneros e diretores em média de Gross.
+    """
     top_genres = (
         df.explode("Genre_list")
         .groupby("Genre_list")["Gross"]
@@ -59,6 +69,9 @@ def gross_top_categories():
 
 
 def gross_factors_all():
+    """
+    Retorna correlação, regressão e top categorias em um único dicionário.
+    """
     return {
         "correlations": gross_correlation(),
         "regression": gross_regression(),

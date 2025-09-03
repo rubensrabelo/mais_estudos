@@ -31,10 +31,6 @@ def train_model(
 ) -> tuple[RandomForestRegressor, list[str], float]:
     """
     Treina o Random Forest no dataset e salva o modelo.
-    Retorna:
-        model: RandomForestRegressor treinado
-        features: lista de features usadas
-        rmse: raiz do erro quadrático médio no treino
     """
     if df is None:
         df = preprocess_imdb(df)

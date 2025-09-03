@@ -2,6 +2,10 @@ import pandas as pd
 
 
 def correlations(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Calcula a matriz de correlação entre colunas numéricas selecionadas do
+    DataFrame de filmes.
+    """
     num_cols = [
         "Gross",
         "IMDB_Rating",

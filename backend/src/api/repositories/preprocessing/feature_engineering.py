@@ -2,6 +2,10 @@ import pandas as pd
 
 
 def feature_engineering(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Cria novas colunas no DataFrame de filmes com informações de gêneros, ano,
+    idade, diretores e indicador de sucesso.
+    """
     df["Genre_list"] = (
         df["Genre"].fillna("")
         .apply(lambda s: [g.strip() for g in s.split(",")] if s else [])

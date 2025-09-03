@@ -10,6 +10,10 @@ _movie_data = None
 
 
 def get_dataset(path: str) -> pd.DataFrame:
+    """
+    Carrega o dataset processado, aplica engenharia de features e mantém em
+    cache para reutilização.
+    """
     global _movie_data
     if _movie_data is None:
         df = load_and_clean_dataset(path)

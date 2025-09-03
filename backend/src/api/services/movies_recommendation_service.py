@@ -29,7 +29,6 @@ def top10_movies():
     df_ranked = add_global_ranking(df)
 
     top10 = df_ranked.sort_values("Global_Score").head(10)
-    # top10 = top10.sort_values("IMDB_Rating", ascending=False)
 
     return [
         {

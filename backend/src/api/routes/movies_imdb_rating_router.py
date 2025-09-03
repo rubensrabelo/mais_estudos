@@ -5,7 +5,7 @@ from api.repositories import df, df_test
 from api.services.movies_imdb_rating_service import (
     predict_movie, load_model, preprocess_imdb
 )
-from api.services.movies_imdb_rating_service import evaluate_model_performance 
+from api.services.movies_imdb_rating_service import evaluate_model_performance
 
 router = APIRouter()
 
@@ -47,6 +47,9 @@ def get_model_metrics() -> dict:
 
 @router.post("/predict", response_model=dict)
 def predict_imdb(movie: MovieInput) -> dict:
+    """
+    Recebe dados de um filme e retorna a previsão de nota no IMDB.
+    """
     movie_dict = movie.model_dump()
     prediction = predict_movie(movie_dict, model=model, df_ref=df_ref)
     return {"IMDB_Prediction": prediction}

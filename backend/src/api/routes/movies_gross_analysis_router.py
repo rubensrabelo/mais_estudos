@@ -6,16 +6,25 @@ router = APIRouter()
 
 @router.get("/correlation")
 def gross_correlation():
+    """
+    Retorna a matriz de correlação das variáveis relacionadas a Gross.
+    """
     return service.gross_correlation()
 
 
 @router.get("/regression")
 def gross_regression():
+    """
+    Retorna os resultados da regressão sobre a variável Gross.
+    """
     return service.gross_regression()
 
 
 @router.get("/top_categories")
 def gross_top_categories():
+    """
+    Retorna as categorias de filmes mais relevantes em relação a Gross.
+    """
     return service.gross_top_categories()
 
 
