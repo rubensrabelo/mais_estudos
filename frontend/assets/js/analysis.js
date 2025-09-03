@@ -218,9 +218,9 @@ async function loadRecommendationData() {
       "http://127.0.0.1:8000/overview_analysis/wordcloud";
 
 
-    const overviewText = document.getElementById("overview-input").value.trim();
-    // 6. Predição de Gênero
-    predictGenre(overviewText)
+    // const overviewText = document.getElementById("overview-input").value.trim();
+    // // 6. Predição de Gênero
+    // predictGenre(overviewText)
   } catch (err) {
     console.error("Erro ao carregar dados:", err);
   }
@@ -228,11 +228,16 @@ async function loadRecommendationData() {
 
 // Função para chamar o modelo com overview customizado
 // Toggle do conteúdo ao clicar no H4
-const h4 = document.querySelector("#overview-predict-section h4");
-const content = document.getElementById("overview-predict-content");
+document.addEventListener("DOMContentLoaded", () => {
+  const h4 = document.querySelector("#overview-predict-section h4");
+  const content = document.getElementById("overview-predict-content");
 
-h4.addEventListener("click", () => {
-  content.style.display = content.style.display === "none" ? "block" : "none";
+  h4.addEventListener("click", () => {
+    content.style.display = content.style.display === "none" ? "block" : "none";
+  });
+
+  // já começa fechado (garantia extra, mesmo com o CSS)
+  content.style.display = "none";
 });
 
 // Função para chamar o modelo com overview customizado

@@ -1,4 +1,4 @@
-/* Layout do header e nav já existente */
+/* ====== Layout principal ====== */
 header {
   background: #222;
   color: #fff;
@@ -23,22 +23,20 @@ nav a:hover {
   color: #ffd43b;
 }
 
-/* Main container */
 main {
   max-width: 900px;
   margin: 2rem auto;
   padding: 0 1rem;
-  line-height: 1.6; /* melhora a leitura do texto */
+  line-height: 1.6;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: #333;
 }
 
-/* Cada seção de análise */
 main section {
   margin-bottom: 2.5rem;
 }
 
-/* Título da seção */
+/* ====== Títulos e textos ====== */
 main section h2 {
   font-size: 1.4rem;
   margin-bottom: 0.5rem;
@@ -48,7 +46,6 @@ main section h2 {
   padding-bottom: 0.3rem;
 }
 
-/* Parágrafo de descrição */
 main section p {
   font-size: 1rem;
   color: #555;
@@ -56,53 +53,39 @@ main section p {
   text-align: justify;
 }
 
-/* Estilo para listas não ordenadas */
-main section ul {
-  margin: 0.5rem 0 1rem 1.5rem; /* espaçamento da lista */
-  padding: 0;
-  list-style-type: disc; /* bolinhas padrão */
-  color: #555;
-  line-height: 1.6;
-}
-
-/* Estilo para cada item da lista */
-main section ul li {
-  margin-bottom: 0.5rem; /* espaço entre itens */
-  font-size: 1rem;
-  text-align: justify; /* deixa o texto alinhado */
-}
-
-/* Alternativa: se quiser listas numeradas */
+main section ul,
 main section ol {
-  margin: 0.5rem 0 1rem 2rem;
+  margin: 0.5rem 0 1rem 1.5rem;
   padding: 0;
-  list-style-type: decimal;
   color: #555;
   line-height: 1.6;
 }
 
-main section ol li {
+main section ul { list-style-type: disc; }
+main section ol { list-style-type: decimal; margin-left: 2rem; }
+
+main section li {
   margin-bottom: 0.5rem;
   font-size: 1rem;
   text-align: justify;
 }
 
-/* Linha horizontal estilizada */
+/* ====== Linhas divisórias ====== */
 hr {
-  border: none;               /* Remove a borda padrão */
-  height: 2px;                /* Espessura da linha */
-  background: #ddd;           /* Cor da linha */
-  margin: 1.5rem 0;           /* Espaçamento acima e abaixo */
-  border-radius: 2px;         /* Leve arredondamento nas extremidades */
+  border: none;
+  height: 2px;
+  background: #ddd;
+  margin: 1.5rem 0;
+  border-radius: 2px;
 }
 
-/* Opcional: variação mais destacada */
 hr.highlight {
   height: 3px;
   background: linear-gradient(to right, #0066cc, #00aaff);
   margin: 2rem 0;
 }
 
+/* ====== Cards de recomendação ====== */
 .recommendation-card {
   background: #f9f9f9;
   border-left: 6px solid #ffd43b;
@@ -124,23 +107,20 @@ hr.highlight {
   font-size: 1rem;
 }
 
-/* Estilo base para tabelas */
+/* ====== Tabelas ====== */
 table {
   width: 100%;
-  border-collapse: collapse; /* remove espaçamento interno das células */
+  border-collapse: collapse;
   margin: 1rem 0;
   font-size: 0.95rem;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: #333;
   background: #fff;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* leve sombra */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
   border-radius: 6px;
-  overflow: hidden; /* arredondamento no container */
+  overflow: hidden;
 }
 
-/* Cabeçalho */
 table thead {
-  background: #222; /* fundo escuro para destacar */
+  background: #222;
   color: #fff;
 }
 
@@ -152,19 +132,13 @@ table thead th {
   border-bottom: 2px solid #444;
 }
 
-/* Linhas e células */
 table tbody tr {
   border-bottom: 1px solid #eee;
   transition: background 0.2s ease-in-out;
 }
 
-table tbody tr:nth-child(even) {
-  background: #f9f9f9; /* zebra striping */
-}
-
-table tbody tr:hover {
-  background: #f1f7ff; /* destaque ao passar o mouse */
-}
+table tbody tr:nth-child(even) { background: #f9f9f9; }
+table tbody tr:hover { background: #f1f7ff; }
 
 table td {
   padding: 0.8rem;
@@ -173,7 +147,6 @@ table td {
   vertical-align: middle;
 }
 
-/* Ajuste para números (alinha à direita) */
 table td:nth-child(3),
 table td:nth-child(4),
 table td:nth-child(5),
@@ -183,7 +156,6 @@ table td:nth-child(8) {
   text-align: right;
 }
 
-/* Posição mais destacada */
 table tbody td:first-child {
   font-weight: bold;
   text-align: center;
@@ -191,110 +163,179 @@ table tbody td:first-child {
 }
 
 .highlight-trilogy {
-  background-color: #fff9e6; /* fundo amarelo claro */
+  background-color: #fff9e6;
   font-weight: bold;
-  border-left: 5px solid #ffd43b; /* barra de destaque */
+  border-left: 5px solid #ffd43b;
 }
 
-.highlight-trilogy td {
-  color: #222;
-}
+.highlight-trilogy td { color: #222; }
 
-/* Seção de previsão */
+/* ====== Seção de previsão (Overview) ====== */
 #overview-predict-section {
+  margin: 2rem auto;
   max-width: 700px;
-  margin: 0 auto 40px auto;
-  padding: 20px;
-  background: #f9f9f9;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  text-align: center;
 }
 
-/* H4 clicável */
+/* Título clicável */
 #overview-predict-section h4 {
-  text-align: center;
-  font-size: 1.2rem;
-  margin-bottom: 15px;
-  color: #333;
   cursor: pointer;
-  transition: color 0.2s ease;
+  background: #f0f0f0;
+  padding: 12px;
+  border-radius: 8px;
+  transition: background 0.3s, color 0.2s;
+  font-size: 1.1rem;
+  color: #333;
 }
 
 #overview-predict-section h4:hover {
-  text-decoration: underline;
-  color: #4a90e2;
+  background: #e0e0e0;
 }
 
-/* Conteúdo oculto inicialmente */
+/* Conteúdo escondido inicialmente */
 #overview-predict-content {
   display: none;
-  max-width: 700px;
-  margin: 0 auto;
-  padding: 15px 0;
+  margin-top: 1rem;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background: #fafafa;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
 }
 
-/* Container do textarea */
+/* Container do textarea e botão */
 #overview-input-container {
   position: relative;
   width: 100%;
+  margin-bottom: 1rem;
 }
 
 /* Textarea */
 #overview-input {
   width: 100%;
   min-height: 100px;
-  padding: 15px 15px 40px 15px; /* espaço inferior para o botão */
-  font-size: 1rem;
-  border: 2px solid #ccc;
-  border-radius: 10px;
+  padding: 12px 14px 40px 14px; /* espaço para botão */
+  font-size: 0.95rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
   resize: vertical;
-  transition: all 0.3s ease;
-  background: #fff;
-  box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 #overview-input:focus {
-  border-color: #4a90e2;
-  box-shadow: 0 0 10px rgba(74,144,226,0.2);
+  border-color: #007bff;
+  box-shadow: 0 0 6px rgba(0,123,255,0.2);
   outline: none;
 }
 
-/* Botão no canto inferior direito */
+/* Botão fixo no canto inferior direito */
 #predict-btn {
   position: absolute;
   bottom: 10px;
   right: 10px;
   padding: 6px 12px;
-  font-size: 0.9rem;
-  background: linear-gradient(135deg, #4a90e2, #357ab8);
+  font-size: 0.85rem;
+  background: #007bff;
   color: white;
   border: none;
   border-radius: 6px;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: background 0.2s, transform 0.1s;
   box-shadow: 0 2px 6px rgba(0,0,0,0.15);
 }
 
 #predict-btn:hover {
-  background: linear-gradient(135deg, #357ab8, #2a5d92);
+  background: #0056b3;
   transform: translateY(-1px);
 }
 
 /* Output de previsão */
 #predict-genre {
-  margin-top: 20px;
-  padding: 15px;
+  padding: 0.8rem;
   border: 1px solid #ddd;
-  border-radius: 10px;
+  border-radius: 6px;
   background: #fff;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-  min-height: 50px;
-  font-size: 1rem;
+  font-size: 0.95rem;
   color: #333;
+  min-height: 40px;
+  text-align: left;
 }
 
 
-/* Footer */
+/* ====== Seção de previsão (IMDB) ====== */
+#imdb-predict-section {
+  margin: 2rem auto;
+  max-width: 700px;
+  text-align: center;
+}
+
+#predict-toggle {
+  cursor: pointer;
+  background: #f0f0f0;
+  padding: 12px;
+  border-radius: 8px;
+  transition: background 0.3s;
+}
+
+#predict-toggle:hover {
+  background: #e0e0e0;
+}
+
+#predict-container {
+  margin-top: 1rem;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background: #fafafa;
+}
+
+#predict-form {
+  display: grid;
+  gap: 0.8rem;
+  grid-template-columns: 1fr 1fr;
+}
+
+#predict-form label {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+#predict-form input,
+#predict-form textarea {
+  padding: 6px 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+
+#predict-form button {
+  grid-column: span 2;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  background: #007bff;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+#predict-form button:hover {
+  background: #0056b3;
+}
+
+#result {
+  margin-top: 1rem;
+  padding: 0.8rem;
+  background: #fff;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  font-size: 0.95rem;
+}
+
+/* ====== Footer ====== */
 footer {
   background: #222;
   color: #bbb;
@@ -302,4 +343,3 @@ footer {
   padding: 1rem;
   margin-top: 2rem;
 }
-
