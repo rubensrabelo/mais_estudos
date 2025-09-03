@@ -9,79 +9,73 @@
 </head>
 
 <body>
-    <header>
-        <h1>🎬</h1>
-        <nav>
-            <a href="./analysis.html">Análises</a>
-            <a href="./predict.html">Previsões</a>
-        </nav>
-    </header>
-
-    <main>
-        <h2>Previsão da Nota do IMDB</h2>
-
-        <section id="explanation">
-            <h3>Como funciona o modelo?</h3>
-            <p>
-                Nosso objetivo é prever a <strong>nota do IMDB</strong> de um filme com base em suas características.
-                Esse é um problema de <strong>regressão</strong>, já que a saída é um valor numérico (nota entre 0 e
-                10).
-            </p>
-
-            <h4>Variáveis usadas</h4>
-            <ul>
-                <li><strong>Meta_score</strong>: avaliação da crítica especializada.</li>
-                <li><strong>No_of_Votes_log</strong>: número de votos do público (transformado em log para reduzir
-                    assimetria).</li>
-                <li><strong>Gross_log</strong>: bilheteria, também transformada em log.</li>
-                <li><strong>Runtime_min</strong>: duração do filme em minutos.</li>
-                <li><strong>Age</strong>: idade do filme (2025 - ano de lançamento).</li>
-                <li><strong>Gêneros (dummies)</strong>: indica se o filme pertence a gêneros mais frequentes.</li>
-                <li><strong>Certificado (dummies)</strong>: restrição de faixa etária.</li>
-            </ul>
-
-            <h4>Modelo</h4>
-            <p>
-                Foi usado um <strong>Random Forest Regressor</strong>, que combina várias árvores de decisão.
-                <br><strong>Prós:</strong> lida bem com não-linearidade, reduz overfitting em relação a uma árvore
-                simples e captura interações entre variáveis.
-                <br><strong>Contras:</strong> pode ser mais lento para treinar e menos interpretável que modelos
-                lineares.
-            </p>
-
-            <h4>Métricas do modelo</h4>
-            <div id="metrics">Carregando métricas...</div>
-        </section>
-
-        <hr>
-
-        <section id="imdb-predict-section">
-            <h3 id="predict-toggle">Prever Nota IMDB</h3>
-
-            <div id="predict-container" style="display:none;">
-                <form id="predict-form">
-                    <label>Título: <input type="text" name="Series_Title" required></label>
-                    <label>Ano: <input type="number" name="Released_Year" required></label>
-                    <label>Certificado: <input type="text" name="Certificate" value="A"></label>
-                    <label>Runtime: <input type="text" name="Runtime" value="120 min"></label>
-                    <label>Gênero: <input type="text" name="Genre" required></label>
-                    <label>Meta_score: <input type="number" name="Meta_score"></label>
-                    <label>Votos: <input type="number" name="No_of_Votes"></label>
-                    <label>Gross: <input type="text" name="Gross"></label>
-                    <label>Diretor: <input type="text" name="Director"></label>
-                    <label>Star 1: <input type="text" name="Star1"></label>
-                    <label>Star 2: <input type="text" name="Star2"></label>
-                    <label>Star 3: <input type="text" name="Star3"></label>
-                    <label>Star 4: <input type="text" name="Star4"></label>
-                    <label>Overview: <textarea name="Overview" rows="3"></textarea></label>
-
-                    <button type="submit">Prever</button>
-                </form>
-
-                <div id="result">Preencha os dados e clique em prever.</div>
+    <section class="container">
+        <header>
+            <div class="header-container">
+                <h1>🎬</h1>
+                <nav>
+                    <a href="../../index.html">Home</a>
+                    <a href="./analysis.html">Análises</a>
+                </nav>
             </div>
-        </section>
-    </main>
+        </header>
+        <main>
+            <h2>Previsão da Nota do IMDB</h2>
+            <section id="explanation">
+                <h3>Como funciona o modelo?</h3>
+                <p>
+                    Nosso objetivo é prever a <strong>nota do IMDB</strong> de um filme com base em suas características.
+                    Esse é um problema de <strong>regressão</strong>, já que a saída é um valor numérico (nota entre 0 e
+                    10).
+                </p>
+                <h4>Variáveis usadas</h4>
+                <ul>
+                    <li><strong>Meta_score</strong>: avaliação da crítica especializada.</li>
+                    <li><strong>No_of_Votes_log</strong>: número de votos do público (transformado em log para reduzir
+                        assimetria).</li>
+                    <li><strong>Gross_log</strong>: bilheteria, também transformada em log.</li>
+                    <li><strong>Runtime_min</strong>: duração do filme em minutos.</li>
+                    <li><strong>Age</strong>: idade do filme (2025 - ano de lançamento).</li>
+                    <li><strong>Gêneros (dummies)</strong>: indica se o filme pertence a gêneros mais frequentes.</li>
+                    <li><strong>Certificado (dummies)</strong>: restrição de faixa etária.</li>
+                </ul>
+                <h4>Modelo</h4>
+                <p>
+                    Foi usado um <strong>Random Forest Regressor</strong>, que combina várias árvores de decisão.
+                    <br><strong>Prós:</strong> lida bem com não-linearidade, reduz overfitting em relação a uma árvore
+                    simples e captura interações entre variáveis.
+                    <br><strong>Contras:</strong> pode ser mais lento para treinar e menos interpretável que modelos
+                    lineares.
+                </p>
+                <h4>Métricas do modelo</h4>
+                <div id="metrics">Carregando métricas...</div>
+            </section>
+            <hr>
+            <section id="imdb-predict-section">
+                <h3 id="predict-toggle">Prever Nota IMDB</h3>
+                <div id="predict-container" style="display:none;">
+                    <form id="predict-form">
+                        <label>Título: <input type="text" name="Series_Title" required></label>
+                        <label>Ano: <input type="number" name="Released_Year" required></label>
+                        <label>Certificado: <input type="text" name="Certificate" value="A"></label>
+                        <label>Runtime: <input type="text" name="Runtime" value="120 min"></label>
+                        <label>Gênero: <input type="text" name="Genre" required></label>
+                        <label>Meta_score: <input type="number" name="Meta_score"></label>
+                        <label>Votos: <input type="number" name="No_of_Votes"></label>
+                        <label>Gross: <input type="text" name="Gross"></label>
+                        <label>Diretor: <input type="text" name="Director"></label>
+                        <label>Star 1: <input type="text" name="Star1"></label>
+                        <label>Star 2: <input type="text" name="Star2"></label>
+                        <label>Star 3: <input type="text" name="Star3"></label>
+                        <label>Star 4: <input type="text" name="Star4"></label>
+                        <label>Overview: <textarea name="Overview" rows="3"></textarea></label>
+                        <button type="submit">Prever</button>
+                    </form>
+                    <div id="result">Preencha os dados e clique em prever.</div>
+                </div>
+            </section>
+        </main>
+    </section>
 
     <script src="../js/predict.js"></script>
 </body>
