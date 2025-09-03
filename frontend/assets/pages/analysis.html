@@ -19,39 +19,46 @@
         </nav>
       </div>
     </header>
+
     <main>
-      <h1>Resumo:</h1>
       <section id="eda-intro" class="intro">
         <h2>Resumo Geral da Base de Filmes</h2>
         <p>Carregando dados...</p>
       </section>
+
       <hr />
-      <h1>Análise dos Gráficos</h1>
-      <!-- Gráfico está vindo errado -->
+
       <section>
         <h2>Distribuição de Gêneros</h2>
-        <p>Aqui observamos os 10 gêneros mais frequentes, revelando preferências da indústria e espaço de mercado.</p>
+        <p>Os 10 gêneros mais frequentes revelam tendências marcantes: Drama lidera com folga, presente em 72,3% dos
+          filmes, seguido por Comédia e Crime. Essa predominância sugere forte preferência por narrativas emocionais no
+          cinema.</p>
         <div id="chart-genres" class="chart"></div>
       </section>
-      <!-- Gráfico está vindo errado -->
+
       <section id="heatmap">
         <h2>Correlação entre Variáveis</h2>
         <p></p>
         <div id="chart-corr" class="chart"></div>
       </section>
+
       <section>
-        <h2>IMDB Rating vs Receita (Gross)</h2>
-        <p>Este gráfico revela a relação entre a nota do filme e sua arrecadação. Tendência: filmes bem avaliados tendem a
-          performar melhor, mas há outliers.</p>
+        <h2>Relação entre Nota e Faturamento</h2>
+        <p>Não há uma correlação direta entre a nota no IMDb e o faturamento dos filmes. Ainda assim, produções com nota
+          acima de 8.5 tendem a apresentar desempenho financeiro mais estável.</p>
         <div id="chart-imdbVsGross" class="chart"></div>
       </section>
+
       <section>
-        <h2>Distribuição de Variáveis</h2>
-        <p>Histogramas mostram como variáveis importantes estão distribuídas, como notas do IMDB, duração e receitas.</p>
+        <h2>Distribuição das Notas IMDb</h2>
+        <p>A maioria dos filmes concentra-se entre as notas 7.6 e 8.0, com queda gradual na frequência conforme a nota
+          aumenta. A curva de densidade reforça essa tendência, revelando uma distribuição assimétrica voltada para
+          notas mais baixas.</p>
         <div id="chart-histogram" class="chart"></div>
       </section>
+
       <hr />
-      <h1>Hipóteses dos dados</h1>
+
       <section id="genre-gross">
         <h2>Gênero vs Receita</h2>
         <p>Hipótese: Filmes de aventura e ação tendem a arrecadar mais. Top 5 gêneros por média de receita:</p>
@@ -74,6 +81,7 @@
             menor investimento em marketing.</li>
         </ul>
       </section>
+
       <section id="runtime-rating">
         <h2>Duração vs Avaliação</h2>
         <p>Hipótese: Filmes com runtime mais longo podem ter avaliações mais altas no IMDB</p>
@@ -81,19 +89,22 @@
           <h3>Como foi feito:</h3>
         </h3>
         <ul>
-          <li>Calculou-se a correlação de Spearman entre o tempo de duração (Runtime_min) e a nota do IMDB (IMDB_Rating).
+          <li>Calculou-se a correlação de Spearman entre o tempo de duração (Runtime_min) e a nota do IMDB
+            (IMDB_Rating).
           </li>
         </ul>
         <h3>Resultado:</h3>
         <p class="hypothesis-result">Carregando análise...</p>
         <h3>Análise:</h3>
         <ul>
-          <li>Existe uma correlação positiva fraca. Filmes mais longos tendem a receber avaliações ligeiramente melhores,
+          <li>Existe uma correlação positiva fraca. Filmes mais longos tendem a receber avaliações ligeiramente
+            melhores,
             possivelmente porque durações maiores permitem narrativas mais complexas e desenvolvimento de personagens.
           </li>
           <li>Porém, a correlação não é forte, mostrando que duração sozinha não garante boas avaliações.</li>
         </ul>
       </section>
+
       <section id="votes-gross">
         <h2>Popularidade (votos) vs Receita</h2>
         <p>Hipótese: Filmes com muitos votos no IMDB tendem a ter maior faturamento</p>
@@ -112,6 +123,7 @@
           <li>Isso confirma a hipótese de que a popularidade do público é um bom indicador de sucesso comercial.</li>
         </ul>
       </section>
+
       <section id="age-gross">
         <h2>Idade do Filme vs Receita</h2>
         <p>Hipótese: O fator “tempo” (idade do filme) pode influenciar receita</p>
@@ -123,23 +135,27 @@
         <p class="hypothesis-result">Carregando análise...</p>
         <h3>Análise:</h3>
         <ul>
-          <li>Filmes mais antigos ainda conseguem gerar receita significativa, especialmente clássicos como The Godfather
+          <li>Filmes mais antigos ainda conseguem gerar receita significativa, especialmente clássicos como The
+            Godfather
             (1972), que são relançados ou mantêm relevância cultural.</li>
-          <li>Décadas mais recentes tendem a arrecadar menos em média, provavelmente por incluir filmes de menor escala ou
+          <li>Décadas mais recentes tendem a arrecadar menos em média, provavelmente por incluir filmes de menor escala
+            ou
             por efeito de dispersão de títulos.</li>
         </ul>
       </section>
+
       <hr />
-      <h1>Recomendação de Filmes</h1>
+
       <section id="recommendation">
         <h2>🎥 Indicação de Filme</h2>
         <p>
           Quando falamos em “melhor filme”, cada pessoa pode dar peso diferente: alguns olham para a crítica
           especializada, outros para a bilheteria, outros para a opinião do público.
-          Para evitar vieses e criar uma visão mais equilibrada, foi criado um <strong>Global Score</strong>, que combina
+          Para evitar vieses e criar uma visão mais equilibrada, foi criado um <strong>Global Score</strong>, que
+          combina
           múltiplos fatores em um único ranking.
         </p>
-        <h3>📊 Como cheguei no TOP 10 (Global Score)</h3>
+        <h3>Como cheguei no TOP 10 (Global Score)</h3>
         <p>O cálculo considerou 4 dimensões com pesos diferentes:</p>
         <ul>
           <li><strong>Nota do IMDB</strong> (peso 2)</li>
@@ -176,24 +192,33 @@
           Isso mostra que <em>toda a trilogia apresenta métricas consistentes de qualidade e relevância</em>.
         </p>
       </section>
+
       <section id="top10">
         <h2>Top 10 Filmes</h2>
         <div id="top10-list">Carregando...</div>
       </section>
+
       <section id="gross-analysis">
         <h2>Fatores do Faturamento</h2>
         <div id="gross-content">Carregando...</div>
       </section>
+
       <section id="overview-analysis">
         <h2>Análise de Overview</h2>
         <h3>Wordcloud</h3>
+        <h2>Previsão de Gênero com Base no Overview</h2>
+        <p>A nuvem de palavras revela padrões narrativos recorrentes, como "homem", "tornar", "dois", "encontrar", “família”,
+          “amor”, “vida”, “jovem” e “amizade”, que são fortemente associados a gêneros como Drama, Comédia, Crime e Aventura.
+          Isso sugere que, sim, é possível prever o gênero de um filme com base no seu overview — especialmente quando
+          ele contém termos emocionalmente carregados ou temáticos. Embora não seja uma regra absoluta, o uso de
+          processamento de linguagem natural (NLP) pode identificar essas pistas e gerar previsões com boa precisão.</p>
         <div id="chart-wordcloud" class="chart">
           <img id="wordcloud-img" alt="Wordcloud de Overview" />
         </div>
         <h3>Exemplo de Predição de Gênero</h3>
         <h4>Aplicação em modelos de previsão:</h4>
         <p>Um modelo de NLP consegue utilizar essas palavras para prever o gênero do filme com boa precisão.</p>
-        📌 <strong>Exemplo de predição real:</strong>
+        <strong>Exemplo de predição real:</strong>
         <p><em>Input:</em></p>
         <p>“A young wizard fights dark forces in a magical world full of mysteries and adventures.”</p>
         <div id="example-output">
@@ -204,7 +229,7 @@
             <li>Comedy / Action (probabilidades menores)</li>
           </ul>
         </div>
-        ✅ <strong>Conclusão:</strong>
+        <strong>Conclusão:</strong>
         <p>
           Sim, é possível prever o gênero a partir do overview. Esse recurso pode ser aplicado em:
         </p>
@@ -214,7 +239,9 @@
           <li>Análises de mercado, entendendo tendências de gêneros em descrições de lançamentos.</li>
         </ul>
       </section>
+
       <hr />
+
       <section id="overview-predict-section">
         <h4>Teste você mesmo:</h4>
         <div id="overview-predict-content">
@@ -228,8 +255,7 @@
       </section>
   </section>
 
-
-    <script src="../js/analysis.js"></script>
+  <script src="../js/analysis.js"></script>
 </body>
 
 </html>
