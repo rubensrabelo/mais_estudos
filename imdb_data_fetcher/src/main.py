@@ -8,13 +8,14 @@ from .data.movie_list import MOVIE_TITLES
 
 
 def main():
-    movie_titles_to_fetch = []
-    while len(movie_titles_to_fetch) < 200:
-        movie_titles_to_fetch.extend(MOVIE_TITLES)
-    movie_titles_to_fetch = movie_titles_to_fetch[:201]
-
     movies_data = []
-    for idx, title in enumerate(movie_titles_to_fetch, 1):
+    idx = 0
+    total_titles = len(MOVIE_TITLES)
+    
+    while len(movies_data) < 200:
+        title = MOVIE_TITLES[idx % total_titles]
+        idx += 1
+
         data = fetch_movie(title)
         processed = process_movie_data(data)
         if processed:
@@ -24,8 +25,9 @@ def main():
                     movies_data.append(processed)
             except (TypeError, ValueError):
                 continue
+
         if idx % 10 == 0:
-            print(f"Processados {idx} filmes...")
+            print(f"Filmes processados: {len(movies_data)}")
 
     df = create_dataframe(movies_data)
     save_to_csv(df, "imdb_movies_for_test.csv")
