@@ -292,3 +292,25 @@ table tbody td:first-child {
 .chart img:hover {
   transform: scale(1.02);
 }
+
+#back-to-top {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  display: none;
+  background-color: #333;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  z-index: 1000;
+  opacity: 0.7;
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+#back-to-top:hover {
+  opacity: 1;
+  transform: translateY(-2px);
+}

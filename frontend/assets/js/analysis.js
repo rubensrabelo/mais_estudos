@@ -282,6 +282,22 @@ document.getElementById("predict-btn").addEventListener("click", () => {
   predictGenre(overviewText);
 });
 
+const backToTopBtn = document.getElementById("back-to-top");
+
+  // Mostra o botão quando o usuário rolar 300px
+  window.onscroll = function() {
+    if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+      backToTopBtn.style.display = "block";
+    } else {
+      backToTopBtn.style.display = "none";
+    }
+  };
+
+  // Scroll suave ao topo ao clicar
+  backToTopBtn.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+
 
 document.addEventListener("DOMContentLoaded", () => {
   loadSummary();
