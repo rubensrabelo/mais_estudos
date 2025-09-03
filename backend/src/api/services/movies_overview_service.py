@@ -1,27 +1,36 @@
-import io
+from pathlib import Path
 import matplotlib.pyplot as plt
 from wordcloud import WordCloud
 
 from api.repositories import df
 from api.utils import init_model
 
+BASE_DIR = Path(__file__).resolve().parent.parent
+IMG_DIR = BASE_DIR.parent / "img"
+IMG_DIR.mkdir(parents=True, exist_ok=True)
 
-def generate_wordcloud() -> io.BytesIO:
-    """Gera WordCloud com todas as sinopses"""
+
+def save_wordcloud() -> str:
+    """
+    Gera WordCloud com todas as sinopses e salva a imagem
+    """
     text = " ".join(df["Overview"].dropna().astype(str).tolist())
-    wc = (
-        WordCloud(width=800, height=400, background_color="white")
-        .generate(text)
-    )
+    wc = WordCloud(
+        width=800,
+        height=400,
+        background_color="white"
+    ).generate(text)
 
-    buf = io.BytesIO()
     plt.figure(figsize=(10, 5))
     plt.imshow(wc, interpolation="bilinear")
     plt.axis("off")
     plt.tight_layout()
-    plt.savefig(buf, format="png")
-    buf.seek(0)
-    return buf
+
+    file_path = IMG_DIR / "wordcloud_overview.png"
+    plt.savefig(file_path, format="png", bbox_inches="tight", dpi=150)
+    plt.close()
+
+    return str(file_path)
 
 
 def top_words_by_genre(genre: str, top_n: int = 15) -> dict:

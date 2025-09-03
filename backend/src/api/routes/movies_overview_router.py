@@ -1,7 +1,6 @@
 from fastapi import APIRouter
 from pydantic import BaseModel
 
-from fastapi.responses import StreamingResponse
 from api.services import movies_overview_service as service
 
 router = APIRouter()
@@ -11,10 +10,10 @@ class OverviewRequest(BaseModel):
     overview: str
 
 
-@router.get("/wordcloud", response_class=StreamingResponse)
-def wordcloud() -> StreamingResponse:
-    buf = service.generate_wordcloud()
-    return StreamingResponse(buf, media_type="image/png")
+@router.get("/wordcloud/save", response_model=dict)
+def wordcloud() -> dict:
+    filepath = service.save_wordcloud()
+    return {"message": "Imagem salva com sucesso!", "path": filepath}
 
 
 @router.get("/top-words", response_model=dict)

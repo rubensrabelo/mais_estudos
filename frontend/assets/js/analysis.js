@@ -214,8 +214,14 @@ async function loadRecommendationData() {
 
 
     // 4. Overview Wordcloud
-    document.getElementById("wordcloud").src =
-      "http://127.0.0.1:8000/overview_analysis/wordcloud";
+
+    const wcResponse = await fetch("http://127.0.0.1:8000/overview_analysis/wordcloud/save");
+    const wcData = await wcResponse.json();
+
+    const fileName = wcData.path.split(/[\\/]/).pop();
+
+    document.getElementById("wordcloud-img").src =
+      `http://localhost:8000/img/${fileName}`;
 
 
     // const overviewText = document.getElementById("overview-input").value.trim();
