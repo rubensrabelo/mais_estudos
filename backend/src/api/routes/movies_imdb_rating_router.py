@@ -5,6 +5,7 @@ from api.repositories import df
 from api.services.movies_imdb_rating_service import (
     predict_movie, load_model, preprocess_imdb
 )
+from api.utils import evaluate_model_performance
 
 router = APIRouter()
 
@@ -27,6 +28,20 @@ class MovieInput(BaseModel):
     Star4: str
     No_of_Votes: int
     Gross: str
+
+
+@router.get("/metrics", response_model=dict)
+def get_model_metrics() -> dict:
+    """
+    Retorna métricas de performance do modelo.
+    """
+    rmse, mae, r2 = evaluate_model_performance(model, df_ref)
+
+    return {
+        "RMSE": rmse,
+        "MAE": mae,
+        "R2": r2
+    }
 
 
 @router.post("/predict", response_model=dict)
