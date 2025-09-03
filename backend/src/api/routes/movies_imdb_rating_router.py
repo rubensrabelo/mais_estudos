@@ -1,16 +1,17 @@
 from fastapi import APIRouter
 from pydantic import BaseModel
 
-from api.repositories import df
+from api.repositories import df, df_test
 from api.services.movies_imdb_rating_service import (
     predict_movie, load_model, preprocess_imdb
 )
-from api.utils import evaluate_model_performance
+from api.services.movies_imdb_rating_service import evaluate_model_performance 
 
 router = APIRouter()
 
 model = load_model()
 df_ref = preprocess_imdb(df)
+df_ref_test = preprocess_imdb(df_test)
 
 
 class MovieInput(BaseModel):
@@ -35,7 +36,7 @@ def get_model_metrics() -> dict:
     """
     Retorna métricas de performance do modelo.
     """
-    rmse, mae, r2 = evaluate_model_performance(model, df_ref)
+    rmse, mae, r2 = evaluate_model_performance(model, df_ref_test)
 
     return {
         "RMSE": rmse,
