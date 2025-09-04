@@ -24,9 +24,9 @@
             <section id="explanation">
                 <h3>Como funciona o modelo?</h3>
                 <p>
-                    Nosso objetivo é prever a <strong>nota do IMDB</strong> de um filme com base em suas características.
-                    Esse é um problema de <strong>regressão</strong>, já que a saída é um valor numérico (nota entre 0 e
-                    10).
+                    Este modelo tem como objetivo prever a <strong>nota do IMDB</strong> de um filme com base em suas
+                    características. Trata-se de um problema de <strong>regressão</strong>, uma vez que a variável alvo
+                    é numérica e varia de 0 a 10.
                 </p>
                 <h4>Variáveis usadas</h4>
                 <ul>
@@ -47,20 +47,31 @@
                     <br><strong>Contras:</strong> pode ser mais lento para treinar e menos interpretável que modelos
                     lineares.
                 </p>
-                <h4>Métricas do modelo</h4>
+                <h4>Métricas do modelo:</h4>
                 <div id="metrics">Carregando métricas...</div>
+
+                <p>As métricas do modelo indicam um desempenho bastante sólido. O RMSE (Root Mean Squared Error) de
+                    0.098 revela que o erro médio quadrático entre as previsões e os valores reais é baixo, o que sugere
+                    boa precisão. O MAE (Mean Absolute Error) de 0.080 reforça essa conclusão, mostrando que o erro
+                    absoluto médio também é pequeno. Já o R² (Coeficiente de Determinação) de 0.870 indica que 87% da
+                    variabilidade dos dados é explicada pelo modelo, o que representa uma capacidade preditiva elevada.
+                    Em conjunto, esses indicadores demonstram que o modelo está bem ajustado e apresenta resultados
+                    confiáveis para o problema proposto.</p>
 
                 <h4>Análise do filme "The Shawshank Redemption"</h4>
                 <p>
-                    O modelo previu a nota <strong>8,77/10</strong> para o filme, enquanto a nota real é <strong>9,3/10</strong>.
+                    O modelo previu a nota <strong>8,77/10</strong> para o filme, enquanto a nota real é
+                    <strong>9,3/10</strong>.
                     Considerando o erro médio do modelo (MAE ≈ 0,08), a previsão está muito próxima da realidade.
                 </p>
                 <p>
-                    Este resultado mostra que o modelo captura bem as características importantes: alta avaliação da crítica
+                    Este resultado mostra que o modelo captura bem as características importantes: alta avaliação da
+                    crítica
                     (Meta_score 80), grande número de votos (≈2,3 milhões), longa duração (142 min) e gênero drama.
                 </p>
                 <p>
-                    <strong>Resumo:</strong> O modelo demonstra boa capacidade preditiva, com pequenas diferenças em relação à nota real,
+                    <strong>Resumo:</strong> O modelo demonstra boa capacidade preditiva, com pequenas diferenças em
+                    relação à nota real,
                     estando dentro da margem de erro esperada pelas métricas do Random Forest.
                 </p>
             </section>
