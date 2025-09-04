@@ -2,18 +2,70 @@ import { plotRoutes } from "./api.js";
 
 export function renderSummary(summary, corr) {
   const intro = document.getElementById("eda-intro");
+
   const grossVotesCorr = corr.Gross.No_of_Votes.toFixed(2);
   const grossAgeCorr = corr.Gross.Age.toFixed(2);
   const imdbVotesCorr = corr.IMDB_Rating.No_of_Votes.toFixed(2);
 
+  const missingValues =
+    Object.keys(summary.missing_values).length > 0
+      ? Object.entries(summary.missing_values)
+        .map(([col, val]) => `**${col}** (${val} registros)`)
+        .join(", ")
+      : "nenhuma coluna apresenta valores ausentes";
+
   intro.innerHTML = `
-    <h2>Resumo Geral da Base de Filmes</h2>
-    <p>Total de filmes: <strong>${summary.count}</strong></p>
-    <p>Média de receita (Gross): <strong>$${summary.gross_mean.toLocaleString()}</strong></p>
-    <p>Média de avaliação IMDB: <strong>${summary.rating_mean.toFixed(2)}</strong></p>
-    <p>Média de Meta Score: <strong>${summary.meta_mean.toFixed(2)}</strong></p>
-    <p>Diretor mais frequente: <strong>${summary.top_director}</strong></p>
-  `;
+    <h2>Análise Geral da Base de Filmes</h2>
+    <p>
+      A base contém <strong>${summary.count}</strong> filmes, abrangendo produções
+      de <strong>${summary.years.min}</strong> até <strong>${summary.years.max}</strong>. 
+      O ano mais comum é <strong>${summary.years.most_common_year}</strong>, 
+      com <strong>${summary.years.most_common_year_count}</strong> filmes.
+    </p>
+    <p>
+      Em relação aos diretores, há uma diversidade significativa, com 
+      <strong>${summary.directors.unique_count}</strong> nomes únicos.
+      O mais recorrente é <strong>${summary.directors.top_director}</strong>, 
+      com <strong>${summary.directors.top_director_count}</strong> filmes.
+    </p>
+
+    <h3>Receita (Gross)</h3>
+    <p>
+      A média de receita é de <strong>$${summary.gross.mean.toLocaleString()}</strong>,
+      mas a mediana é de apenas <strong>$${summary.gross.median.toLocaleString()}</strong>, 
+      revelando forte assimetria: poucos filmes de altíssimo faturamento puxam a média para cima. 
+      O maior sucesso é <em>${summary.gross.top_movie}</em>, 
+      com mais de <strong>$${summary.gross.max.toLocaleString()}</strong>, 
+      enquanto o menor faturamento registrado é de apenas 
+      <strong>$${summary.gross.min.toLocaleString()}</strong>.
+    </p>
+
+    <h3>Avaliações</h3>
+    <p>
+      A média de avaliação no IMDb é <strong>${summary.imdb_rating.mean.toFixed(2)}</strong>,
+      e no Meta Score é <strong>${summary.meta_score.mean.toFixed(2)}</strong>. 
+      O destaque é o filme <em>${summary.imdb_rating.top_movie}</em>, 
+      considerado o mais bem avaliado.
+    </p>
+
+    <h3>Valores Ausentes</h3>
+    ${Object.keys(summary.missing_values).length > 0
+          ? (() => {
+            const missingFormatted = Object.entries(summary.missing_values)
+              .map(([col, val]) => `${col} (${val} filmes)`)
+              .join(", ");
+
+            return `
+              <p>
+                A presença de valores ausentes em variáveis importantes — como <strong>${missingFormatted}</strong> —
+                pode comprometer a qualidade das previsões, especialmente em modelos que buscam estimar a nota do IMDb
+                com base em múltiplos atributos. Para mitigar esse problema, é essencial aplicar estratégias adequadas de 
+                tratamento, garantindo maior confiabilidade e desempenho nos resultados.
+              </p>
+            `;
+          })()
+          : "<p>Nenhuma coluna possui valores ausentes 🎉</p>"
+        }`;
 
   const heatmapIntro = document.querySelector("#heatmap p");
   heatmapIntro.innerHTML += `
@@ -142,8 +194,8 @@ export function renderGrossAnalysis(gross) {
     <p>IMDb Rating (<strong>${gross.correlations.IMDB_Rating.toFixed(2)}</strong>) → relação positiva, mas baixa.</p>
     <p>Idade do filme (<strong>${gross.correlations.Age.toFixed(2)}</strong>) → obras mais antigas arrecadam menos.</p>
     <h3>Principais categorias vencedoras:</h3>
-    <p><strong>Gêneros:</strong> ${Object.keys(gross.top_categories.top_genres).slice(0,5).join(", ")}</p>
-    <p><strong>Diretores:</strong> ${Object.keys(gross.top_categories.top_directors).slice(0,2).join(" e ")}</p>
+    <p><strong>Gêneros:</strong> ${Object.keys(gross.top_categories.top_genres).slice(0, 5).join(", ")}</p>
+    <p><strong>Diretores:</strong> ${Object.keys(gross.top_categories.top_directors).slice(0, 2).join(" e ")}</p>
   `;
 }
 
@@ -153,11 +205,11 @@ export function renderWordcloud(fileName) {
 }
 
 export function renderPredictionGenre(predict) {
-  const topPredictions = predict.predicted_genres.slice(0,2);
+  const topPredictions = predict.predicted_genres.slice(0, 2);
   document.getElementById("predict-genre").innerHTML = `
     <p><strong>Output:</strong></p>
     <ul>
-      ${topPredictions.map(g => `<li>${g} (${(predict.top_probs[g]*100).toFixed(1)}%)</li>`).join("")}
+      ${topPredictions.map(g => `<li>${g} (${(predict.top_probs[g] * 100).toFixed(1)}%)</li>`).join("")}
     </ul>
   `;
 }

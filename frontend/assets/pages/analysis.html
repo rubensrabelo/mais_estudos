@@ -23,6 +23,7 @@
     <main>
       <section id="eda-intro" class="intro">
         <h2>Resumo Geral da Base de Filmes</h2>
+
         <p>Carregando dados...</p>
       </section>
 
@@ -30,10 +31,24 @@
 
       <section>
         <h2>Distribuição de Gêneros</h2>
-        <p>Os 10 gêneros mais frequentes revelam tendências marcantes: Drama lidera com folga, presente em 72,3% dos
-          filmes, seguido por Comédia e Crime. Essa predominância sugere forte preferência por narrativas emocionais no
-          cinema.</p>
+        <p>Os 10 gêneros mais frequentes revelam tendências marcantes: Drama lidera com folga, seguido por Comédia e
+          Crime. Essa predominância sugere forte preferência por narrativas emocionais no cinema.</p>
+
         <div id="chart-genres" class="chart"></div>
+
+        <p>
+          A predominância do gênero Drama no conjunto de dados pode influenciar diretamente os modelos preditivos de
+          categorização, levando a uma tendência de superclassificação para esse gênero. Ao tentar prever o gênero de um
+          filme com base em seu overview, o modelo pode interpretar elementos emocionais como indicativos de Drama,
+          mesmo quando o contexto sugere Comédia ou Aventura.
+        </p>
+
+        <p>
+          Para mitigar esse viés, é essencial aplicar estratégias como balanceamento de classes, ajuste de pesos no
+          treinamento e enriquecimento do dataset com exemplos mais diversos e representativos. Essas ações ajudam a
+          melhorar a sensibilidade do modelo para gêneros menos frequentes, tornando a classificação mais precisa e
+          justa.
+        </p>
       </section>
 
       <section id="heatmap">
@@ -201,13 +216,25 @@
       <section id="gross-analysis">
         <h2>Fatores do Faturamento</h2>
         <div id="gross-content">Carregando...</div>
+
+        <p>
+          A correlação entre número de votos no IMDb e faturamento destaca o engajamento do público como principal
+          indicador de sucesso comercial. Outros fatores como duração do filme e nota no IMDb têm impacto positivo,
+          embora mais discreto. Já filmes mais antigos tendem a arrecadar menos. Para decisões estratégicas, vale
+          priorizar gêneros com histórico de alto desempenho — como Adventure, Sci-Fi e Action — e considerar diretores
+          consagrados, como Christopher Nolan e Steven Spielberg, que estão associados a maiores receitas. Esses
+          elementos podem orientar tanto investimentos em produção quanto ajustes em modelos preditivos voltados à
+          estimativa de faturamento.
+        </p>
       </section>
 
       <section id="overview-analysis">
         <h2>Análise de Overview</h2>
         <h3>Wordcloud</h3>
-        <p>A nuvem de palavras revela padrões narrativos recorrentes, como "homem", "tornar", "dois", "encontrar", “família”,
-          “amor”, “vida”, “jovem” e “amizade”, que são fortemente associados a gêneros como Drama, Comédia, Crime e Aventura.
+        <p>A nuvem de palavras revela padrões narrativos recorrentes, como "homem", "tornar", "dois", "encontrar",
+          “família”,
+          “amor”, “vida”, “jovem” e “amizade”, que são fortemente associados a gêneros como Drama, Comédia, Crime e
+          Aventura.
           Isso sugere que, sim, é possível prever o gênero de um filme com base no seu overview — especialmente quando
           ele contém termos emocionalmente carregados ou temáticos. Embora não seja uma regra absoluta, o uso de
           processamento de linguagem natural (NLP) pode identificar essas pistas e gerar previsões com boa precisão.</p>
@@ -216,10 +243,15 @@
         </div>
         <h3>Exemplo de Predição de Gênero</h3>
         <h4>Aplicação em modelos de previsão:</h4>
-        <p>Um modelo de NLP consegue utilizar essas palavras para prever o gênero do filme com boa precisão.</p>
+        <p>
+          Modelos de NLP são capazes de analisar descrições textuais (overviews) e prever o gênero de um filme com boa
+          precisão, especialmente quando treinados com dados representativos e bem distribuídos.
+        </p>
+
         <strong>Exemplo de predição real:</strong>
         <p><em>Input:</em></p>
         <p>“A young wizard fights dark forces in a magical world full of mysteries and adventures.”</p>
+
         <div id="example-output">
           <p><strong>Output:</strong></p>
           <ul>
@@ -228,14 +260,28 @@
             <li>Comedy / Action (probabilidades menores)</li>
           </ul>
         </div>
+
         <strong>Conclusão:</strong>
         <p>
-          Sim, é possível prever o gênero a partir do overview. Esse recurso pode ser aplicado em:
+          Embora o modelo consiga prever o gênero com base no overview, o resultado acima evidencia um viés causado pelo
+          desbalanceamento do dataset — como citado anteriormente, gêneros como Drama estão super-representados, o que
+          pode distorcer a avaliação e reduzir a sensibilidade para categorias menos frequentes.
+        </p>
+        <p>
+          Para mitigar esse problema, é recomendável aplicar estratégias como balanceamento de classes, ajuste de pesos
+          durante o treinamento e enriquecimento do conjunto de dados com exemplos mais diversos. Essas ações tornam o
+          modelo mais justo e eficaz, ampliando sua capacidade de identificar corretamente gêneros variados.
+        </p>
+
+        <p>
+          Apesar dos desafios causados pelo desbalanceamento do dataset, a aplicação de modelos preditivos para
+          classificação de gênero a partir de descrições textuais oferece diversas possibilidades práticas. Quando bem
+          ajustados, esses modelos podem ser utilizados em diferentes contextos estratégicos, como:
         </p>
         <ul>
-          <li>Sistemas de recomendação, para sugerir filmes automaticamente;</li>
-          <li>Marketing e posicionamento, ao identificar público-alvo a partir da narrativa;</li>
-          <li>Análises de mercado, entendendo tendências de gêneros em descrições de lançamentos.</li>
+          <li>Sistemas de recomendação: sugerir filmes com base em descrições;</li>
+          <li>Marketing e posicionamento: identificar o público-alvo a partir da narrativa;</li>
+          <li>Análises de mercado: entender tendências de gênero em lançamentos recentes.</li>
         </ul>
       </section>
 
