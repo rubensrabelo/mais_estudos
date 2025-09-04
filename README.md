@@ -7,7 +7,9 @@ Além disso, o projeto inclui um **consumo de dados da API do IMDB**, permitindo
 O principal desafio é lidar com dados incompletos e desbalanceados, especialmente para gêneros de filmes, garantindo que as análises e predições sejam consistentes e confiáveis.
 
 ## Demonstração do Projeto
- [Vídeos de Demonstração – Projeto IMDB](https://drive.google.com/drive/u/0/folders/18opVEXHO4GnHjTx6lHQfeWJ674sdIR-S)
+Para entender melhor o funcionamento do projeto, assista aos vídeos demonstrativos disponíveis na pasta do Google Drive:
+
+[Vídeos de Demonstração – Projeto IMDB](https://drive.google.com/drive/u/0/folders/18opVEXHO4GnHjTx6lHQfeWJ674sdIR-S)
 
 ## Estrutura do Projeto
 
