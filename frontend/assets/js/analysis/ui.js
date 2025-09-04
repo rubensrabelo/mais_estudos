@@ -1,4 +1,3 @@
-// ui.js
 import { plotRoutes } from "./api.js";
 
 export function renderSummary(summary, corr) {

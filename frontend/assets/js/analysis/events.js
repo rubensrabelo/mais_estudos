@@ -1,4 +1,3 @@
-// events.js
 import { predictGenreAPI } from "./api.js";
 import { renderPredictionGenre, renderErrorGenre } from "./ui.js";
 

@@ -1,4 +1,3 @@
-// index.js
 import { 
   fetchSummary, 
   fetchCorrelations, 
@@ -56,7 +55,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   await loadSummaryAndCorrelations();
   await renderPlots();
-  await loadHypotheses();  // ✅ agora as hipóteses serão carregadas
+  await loadHypotheses();
   await loadRecommendations();
 
   const gross = await fetchGrossAnalysis();

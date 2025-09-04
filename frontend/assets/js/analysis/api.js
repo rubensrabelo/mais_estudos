@@ -1,4 +1,3 @@
-// api.js
 export const plotRoutes = {
   genres: "http://localhost:8000/plots/genres/save",
   corr: "http://localhost:8000/plots/correlations/save",
