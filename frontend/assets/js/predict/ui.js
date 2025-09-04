@@ -24,7 +24,7 @@ export function renderPrediction(payload, prediction) {
   resultEl.innerHTML = `
     <h4>⭐ Previsão:</h4>
     <p><strong>${payload.Series_Title}</strong> (${payload.Released_Year})<br>
-    Nota prevista: <span style="color:green;font-weight:bold;">${prediction.IMDB_Prediction.toFixed(2)}</span></p>
+    Nota prevista: <span style="color:green;font-weight:bold;">${prediction.IMDB_Prediction.toFixed(1)}</span></p>
   `;
 }
 
