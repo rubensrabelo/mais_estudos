@@ -1,4 +1,5 @@
 from pathlib import Path
+
 from config import plt, sns, format_ticks
 from api.repositories import df
 from api.utils import correlations
@@ -19,7 +20,7 @@ def plot_corr_heatmap() -> str:
         corr,
         annot=True,
         fmt=".2f",
-        cmap="coolwarm",
+        cmap="Blues",
         center=0,
         square=True
     )
