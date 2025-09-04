@@ -35,7 +35,7 @@ venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-4. Execute:
+4. Execute na pasta raiz:
 ```bash
 python -m src.main
 ```
