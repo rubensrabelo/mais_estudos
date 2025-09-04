@@ -21,3 +21,4 @@ frontend/
 ├── pages/                # Páginas internas de análise e predição
 ├── css/                  # Arquivos de estilo
 └── js/                   # Scripts JavaScript
+```
