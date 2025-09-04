@@ -39,6 +39,38 @@
                     <li><strong>Gêneros (dummies)</strong>: indica se o filme pertence a gêneros mais frequentes.</li>
                     <li><strong>Certificado (dummies)</strong>: restrição de faixa etária.</li>
                 </ul>
+                <h4>Tratamentos aplicados nos dados</h4>
+                <ul>
+                    <li><strong>Limpeza de colunas numéricas:</strong>
+                        <ul>
+                            <li><strong>Gross:</strong> remove caracteres especiais ($, vírgula) e converte para float.
+                            </li>
+                            <li><strong>No_of_Votes:</strong> transforma em log para reduzir assimetria
+                                (No_of_Votes_log).</li>
+                            <li><strong>Runtime:</strong> extrai apenas o número de minutos (Runtime_min).</li>
+                            <li><strong>Age:</strong> calcula a idade do filme (2025 - Released_Year).</li>
+                        </ul>
+                    </li>
+                    <li><strong>Criação de variáveis dummy:</strong>
+                        <ul>
+                            <li><strong>Gêneros:</strong> cria colunas binárias para os gêneros mais frequentes
+                                (genre_*).</li>
+                            <li><strong>Certificado:</strong> cria colunas binárias para cada classificação etária
+                                (cert_*).</li>
+                        </ul>
+                    </li>
+                    <li><strong>Features derivadas:</strong>
+                        <ul>
+                            <li><strong>Gross_log:</strong> logaritmo da bilheteria.</li>
+                            <li><strong>No_of_Votes_log:</strong> logaritmo do número de votos.</li>
+                            <li><strong>Runtime_min:</strong> duração em minutos.</li>
+                            <li><strong>Age:</strong> idade do filme.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Tratamento para novos filmes:</strong> aplica os mesmos passos para qualquer novo filme
+                        que for previsto pelo modelo.</li>
+                </ul>
+
                 <h4>Modelo</h4>
                 <p>
                     Foi usado um <strong>Random Forest Regressor</strong>, que combina várias árvores de decisão.
@@ -60,7 +92,7 @@
 
                 <h4>Análise do filme "The Shawshank Redemption"</h4>
                 <p>
-                    O modelo previu a nota <strong>8,77/10</strong> para o filme, enquanto a nota real é
+                    O modelo previu uma nota aproximada de <strong>8,8/10</strong> para o filme, enquanto a nota real é
                     <strong>9,3/10</strong>.
                     Considerando o erro médio do modelo (MAE ≈ 0,08), a previsão está muito próxima da realidade.
                 </p>
