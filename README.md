@@ -6,6 +6,9 @@ Este projeto tem como objetivo explorar dados de filmes do IMDB, realizando **an
 Além disso, o projeto inclui um **consumo de dados da API do IMDB**, permitindo atualizar métricas, manter o dataset atualizado e melhorar a acurácia do modelo preditivo ao longo do tempo.  
 O principal desafio é lidar com dados incompletos e desbalanceados, especialmente para gêneros de filmes, garantindo que as análises e predições sejam consistentes e confiáveis.
 
+## Demonstração do Projeto
+ [Vídeos de Demonstração – Projeto IMDB](https://drive.google.com/drive/u/0/folders/18opVEXHO4GnHjTx6lHQfeWJ674sdIR-S)
+
 ## Estrutura do Projeto
 
 ```bash
