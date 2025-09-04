@@ -17,12 +17,29 @@ Para entender melhor o funcionamento do projeto, assista aos vídeos demonstrati
 frontend/
 ├── imdb_data_fetcher/      # Consome a API do IMDB e salva os dados em CSV
 ├── frontend/               # Interfaces web para visualização de análises, predições e métricas
+├── files/                  # Contém o relatório em PDF e o arquivo .pkl do modelo preditivo
 └── backend/                # API que processa CSV, gera gráficos, treina e expõe o modelo preditivo
 ```
 
 ## Mais informações
 
-Para detalhes sobre cada parte do projeto, consulte os READMEs específicos:
+- Para detalhes sobre cada parte do projeto, consulte os READMEs específicos:
 
 [Frontend](frontend/README.md)
 [Backend](backend/README.md)
+
+- Observações importantes:
+    - A pasta files/ contém:
+        - O relatório em PDF com os resultados do projeto
+        - O arquivo .pkl com o modelo treinado para previsão da nota IMDB
+- O código-fonte do modelo está localizado em backend/api/, organizado da seguinte forma:
+
+```bash
+backend/src/api/
+├── utils/
+│   └── preprocess_imdb.py              # Funções de pré-processamento dos dados do IMDB
+├── services/
+│   └── movies_imdb_rating_service.py   # Lógica de negócio para predição de notas
+└── router/
+    └── movies_imdb_rating_router.py    # Rotas da API para acesso ao modelo preditivo
+```
